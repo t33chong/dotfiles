@@ -2,8 +2,8 @@ set nocompatible
 
 syntax on
 autocmd BufRead,BufNewFile *.py let python_highlight_all=1
-autocmd BufRead,BufNewFile *.py inoremap # X<C-h>#
-colorscheme candycode
+autocmd BufRead,BufNewFile *.py :Python2Syntax
+colorscheme tristan
 
 set gfn=Menlo:h12
 set tabstop=4
@@ -22,16 +22,10 @@ set number
 filetype on
 filetype plugin on
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-inoremap <C-space> <C-x><C-o>
-
 inoremap <S-tab> <C-d>
 
-"set colorcolumn=80
+set colorcolumn=80
 
 set noeb vb t_vb=
 
-nnoremap <S-esc> :noh<CR>
-
-"let current_file = expand('%:p')
-"autocmd BufRead,BufNewFile * ! 'echo -ne "\033]0;' . current_file . '\007"'<CR>
+nnoremap \ :noh<CR>

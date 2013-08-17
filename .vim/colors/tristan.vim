@@ -132,27 +132,33 @@ hi WarningMsg   guifg=#ccae22       guibg=NONE          gui=bold
 " syntax highlighting groups (:help group-name) {{{
 
 hi Comment      guifg=#ff9922       guibg=NONE          gui=NONE
-            \   ctermfg=brown       ctermbg=NONE        cterm=NONE
+            \   ctermfg=red         ctermbg=NONE        cterm=NONE
 
 hi Constant     guifg=#ff6050       guibg=NONE          gui=NONE
-            \   ctermfg=red         ctermbg=NONE        cterm=NONE
+            \   ctermfg=yellow      ctermbg=NONE        cterm=NONE
+hi String       guifg=#ff6050       guibg=NONE          gui=NONE
+            \   ctermfg=yellow      ctermbg=NONE        cterm=NONE
 hi Boolean      guifg=#ff6050       guibg=NONE          gui=bold  
-            \   ctermfg=red         ctermbg=NONE        cterm=bold
+            \   ctermfg=magenta     ctermbg=NONE        cterm=NONE
+hi Number       guifg=#ff6050       guibg=NONE          gui=NONE
+            \   ctermfg=magenta     ctermbg=NONE        cterm=NONE
 
 hi Identifier   guifg=#eecc44       guibg=NONE          gui=NONE
-            \   ctermfg=yellow      ctermbg=NONE        cterm=NONE
+            \   ctermfg=cyan        ctermbg=NONE        cterm=NONE
+hi Function     guifg=#eecc44       guibg=NONE          gui=NONE
+            \   ctermfg=cyan        ctermbg=NONE        cterm=NONE
 
 hi Statement    guifg=#66d077       guibg=NONE          gui=bold
-            \   ctermfg=green       ctermbg=NONE        cterm=bold
+            \   ctermfg=green       ctermbg=NONE        cterm=NONE
 
 hi PreProc      guifg=#bb88dd       guibg=NONE          gui=NONE
-            \   ctermfg=darkmagenta ctermbg=NONE        cterm=NONE
+            \   ctermfg=brown       ctermbg=NONE        cterm=NONE
 
 hi Type         guifg=#4093cc       guibg=NONE          gui=bold
-            \   ctermfg=lightblue   ctermbg=NONE        cterm=bold
+            \   ctermfg=magenta     ctermbg=NONE        cterm=NONE
 
 hi Special      guifg=#9999aa       guibg=NONE          gui=bold  
-            \   ctermfg=lightgray   ctermbg=NONE        cterm=bold
+            \   ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 
 hi Underlined   guifg=#80a0ff       guibg=NONE          gui=underline
             \   ctermfg=NONE        ctermbg=NONE        cterm=underline
@@ -165,7 +171,7 @@ hi Error        guifg=#ffffff       guibg=#ff0000       gui=NONE
             \   ctermfg=white       ctermbg=red         cterm=NONE
 
 hi Todo         guifg=#ffffff       guibg=#ee7700       gui=bold
-            \   ctermfg=black       ctermbg=yellow      cterm=bold
+            \   ctermfg=black       ctermbg=magenta     cterm=bold
 
 " }}}
 
