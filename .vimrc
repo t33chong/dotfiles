@@ -24,7 +24,7 @@ filetype plugin on
 
 inoremap <S-tab> <C-d>
 
-set colorcolumn=80
+"set colorcolumn=80
 
 set noeb vb t_vb=
 
