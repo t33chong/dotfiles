@@ -3,6 +3,7 @@ set nocompatible
 syntax on
 autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 autocmd BufRead,BufNewFile *.py :Python2Syntax
+autocmd BufRead,BufNewFile *.py inoremap # X<C-h>#
 colorscheme tristan
 
 set gfn=Menlo:h12
