@@ -30,3 +30,5 @@ inoremap <S-tab> <C-d>
 set noeb vb t_vb=
 
 nnoremap \ :noh<CR>
+
+let &t_Co=256
