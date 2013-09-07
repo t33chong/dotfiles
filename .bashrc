@@ -3,7 +3,7 @@ export PROMPT_COMMAND='echo -ne "\033]0;${_}\007"'
 export EDITOR=vim
 
 case "$TERM" in
-screen)
+screen-256color)
     PS1="\[\e[31;1m\]\u@\h:\[\e[36;1m\]\w\$ \[\e[0m\]"
     ;;
 esac
