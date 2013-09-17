@@ -32,3 +32,5 @@ set noeb vb t_vb=
 nnoremap \ :noh<CR>
 
 let &t_Co=256
+
+set ls=2
