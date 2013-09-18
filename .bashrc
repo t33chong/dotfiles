@@ -3,6 +3,10 @@ export PROMPT_COMMAND='echo -ne "\033]0;${_}\007"'
 export EDITOR=vim
 
 alias ls="ls --color"
+alias v="vim"
+alias p="python"
+alias g="git"
+alias s="ssh"
 
 case "$TERM" in
 screen-256color)
