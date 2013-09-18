@@ -8,11 +8,11 @@ alias p="python"
 alias g="git"
 alias s="ssh"
 
-case "$TERM" in
-screen-256color)
-    PS1="\[\e[31;1m\]\u@\h:\[\e[36;1m\]\w\$ \[\e[0m\]"
-    ;;
-esac
+#case "$TERM" in
+#screen-256color)
+#    PS1="\[\e[31;1m\]\u@\h:\[\e[36;1m\]\w\$ \[\e[0m\]"
+#    ;;
+#esac
 
 export MARKPATH=$HOME/.marks
 function jump { 
