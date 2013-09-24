@@ -152,7 +152,7 @@ hi Statement    guifg=#66d077       guibg=NONE          gui=bold
             \   ctermfg=green       ctermbg=NONE        cterm=NONE
 
 hi PreProc      guifg=#bb88dd       guibg=NONE          gui=NONE
-            \   ctermfg=brown       ctermbg=NONE        cterm=NONE
+            \   ctermfg=darkblue    ctermbg=NONE        cterm=NONE
 
 hi Type         guifg=#4093cc       guibg=NONE          gui=bold
             \   ctermfg=magenta     ctermbg=NONE        cterm=NONE
