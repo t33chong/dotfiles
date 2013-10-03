@@ -6,6 +6,8 @@ alias ls="ls --color"
 alias v="vim"
 alias vi="vim"
 alias p="python"
+alias py="python"
+alias spy="sudo python"
 alias g="git"
 alias gi="git"
 alias gad="git add"
@@ -17,7 +19,7 @@ alias gbr="git branch"
 alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias gpl="git pull origin master"
 alias gps="git push origin master"
-alias s="ssh"
+alias scr="screen"
 
 #case "$TERM" in
 #screen-256color)
