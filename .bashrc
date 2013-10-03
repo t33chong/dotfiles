@@ -15,6 +15,8 @@ alias gci="git commit -m"
 alias gst="git status"
 alias gbr="git branch"
 alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+alias gpl="git pull origin master"
+alias gps="git push origin master"
 alias s="ssh"
 
 #case "$TERM" in
