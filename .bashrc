@@ -4,8 +4,17 @@ export EDITOR=vim
 
 alias ls="ls --color"
 alias v="vim"
+alias vi="vim"
 alias p="python"
 alias g="git"
+alias gi="git"
+alias gad="git add"
+alias grm="git remove"
+alias gco="git checkout"
+alias gci="git commit -m"
+alias gst="git status"
+alias gbr="git branch"
+alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias s="ssh"
 
 #case "$TERM" in
