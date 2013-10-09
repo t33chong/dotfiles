@@ -22,6 +22,7 @@ set number
 
 filetype on
 filetype plugin on
+filetype indent on
 
 inoremap <S-tab> <C-d>
 
