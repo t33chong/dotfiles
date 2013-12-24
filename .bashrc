@@ -19,6 +19,7 @@ alias gbr="git branch"
 alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias gpl="git pull origin master"
 alias gps="git push origin master"
+alias gdf="git diff --staged"
 alias scr="screen"
 
 #case "$TERM" in
