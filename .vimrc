@@ -35,5 +35,3 @@ nnoremap \ :noh<CR>
 let &t_Co=256
 
 set ls=2
-
-set pastetoggle=<F10>
