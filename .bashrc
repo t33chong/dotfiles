@@ -3,13 +3,9 @@ export PROMPT_COMMAND='echo -ne "\033]0;${_}\007"'
 export EDITOR=vim
 
 alias ls="ls --color"
-alias v="vim"
 alias vi="vim"
-alias p="python"
 alias py="python"
 alias spy="sudo python"
-alias g="git"
-alias gi="git"
 alias gad="git add"
 alias grm="git rm"
 alias gco="git checkout"
@@ -21,12 +17,6 @@ alias gpl="git pull origin master"
 alias gps="git push origin master"
 alias gdf="git diff --staged"
 alias scr="screen"
-
-#case "$TERM" in
-#screen-256color)
-#    PS1="\[\e[31;1m\]\u@\h:\[\e[36;1m\]\w\$ \[\e[0m\]"
-#    ;;
-#esac
 
 export MARKPATH=$HOME/.marks
 function jump { 
