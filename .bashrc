@@ -17,6 +17,7 @@ alias gpl="git pull origin master"
 alias gps="git push origin master"
 alias gdf="git diff --staged"
 alias scr="screen"
+alias remotecopy="~/.vim/bundle/remotecopy/remotecopy"
 
 export MARKPATH=$HOME/.marks
 function jump { 
