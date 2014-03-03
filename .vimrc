@@ -94,6 +94,9 @@ set ls=2
 set pastetoggle=<F6>
 let mapleader=","
 
+let g:syntastic_check_on_open=1
+let g:syntastic_python_checkers=['flake8']
+
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
 "
