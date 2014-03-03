@@ -1,6 +1,17 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Setting up Vundle - the vim plugin bundler
+let VundleNotInstalled=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let VundleNotInstalled=0
+endif
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -17,6 +28,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'tpope/vim-rails.git'
+Bundle 'scrooloose/syntastic'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -29,6 +41,12 @@ Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 " git repos on your local machine (i.e. when working on your own plugin)
 "Bundle 'file:///home/gmarik/path/to/plugin'
 " ...
+
+if VundleNotInstalled == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
 
 filetype plugin indent on     " required
 "
