@@ -74,6 +74,7 @@ let &t_Co=256
 set ls=2
 
 set pastetoggle=<F6>
+let mapleader=","
 
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
