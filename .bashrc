@@ -19,6 +19,7 @@ alias gpl="git pull origin master"
 alias gps="git push origin master"
 alias gdf="git diff --staged"
 alias scr="screen"
+alias grep="grep --color=auto"
 
 export MARKPATH=$HOME/.marks
 function jump { 
