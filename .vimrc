@@ -59,6 +59,7 @@ nnoremap \ :noh<CR>
 let &t_Co=256
 
 set ls=2
+set ruler
 
 set pastetoggle=<F6>
 let mapleader=","
