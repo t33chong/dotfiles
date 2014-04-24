@@ -31,6 +31,7 @@ autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 autocmd BufRead,BufNewFile *.py :Python2Syntax
 autocmd BufRead,BufNewFile *.py inoremap # X<C-h>#
 autocmd BufRead,BufNewFile *.rb set tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufRead,BufNewFile *.html set tabstop=2 softtabstop=2 shiftwidth=2
 
 colorscheme tristan
 
