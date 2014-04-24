@@ -17,6 +17,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
+Bundle 'vim-scripts/matchit.zip'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
