@@ -4,6 +4,8 @@
 [core]
     autocrlf = input
     safecrlf = true
+[push]
+    default = simple
 [alias]
     co = checkout
     ci = commit
