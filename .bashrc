@@ -2,6 +2,7 @@ export PS1="\[\e[32;1m\]\u@\h:\[\e[36;1m\]\w\$ \[\e[0m\]"
 export PROMPT_COMMAND='echo -ne "\033]0;${_}\007"'
 export EDITOR=vim
 export PATH=$PATH:$HOME/.bin
+export LESS="-R"
 
 alias ls="ls --color"
 alias vi="vim"
@@ -24,7 +25,7 @@ alias gdf="git diff --staged"
 alias scr="screen"
 alias tm="tmux"
 alias tma="tmux attach"
-alias grep="grep --color=auto"
+alias grep="grep -n --color=always"
 
 export MARKPATH=$HOME/.marks
 function jump { 
