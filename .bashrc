@@ -63,3 +63,7 @@ function extract()      # Handy Extract Program
         echo "'$1' is not a valid file!"
     fi
 }
+
+function lookfor { 
+    find . -name "$2" | xargs grep --color=always -in "$1" | less -R
+}
