@@ -64,4 +64,8 @@ function extract()      # Handy Extract Program
     fi
 }
 
+function lookfor { 
+    find . -name "$2" | xargs grep --color=always -in "$1" | less -R
+}
+
 eval "$(rbenv init -)"
