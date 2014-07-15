@@ -31,16 +31,15 @@ syntax on
 autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 autocmd BufRead,BufNewFile *.py :Python2Syntax
 autocmd BufRead,BufNewFile *.py inoremap # X<C-h>#
-autocmd BufRead,BufNewFile *.rb set tabstop=2 softtabstop=2 shiftwidth=2
-autocmd BufRead,BufNewFile *.html set tabstop=2 softtabstop=2 shiftwidth=2
+autocmd BufRead,BufNewFile *.py set tabstop=4 softtabstop=4 shiftwidth=4
 
 colorscheme tristan
 
 set gfn=Menlo:h12
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
-set softtabstop=4
+set softtabstop=2
 set smartindent
 set autoindent
 
