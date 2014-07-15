@@ -68,4 +68,15 @@ function lookfor {
     find . -name "$2" | xargs grep --color=always -in "$1" | less -R
 }
 
+# bash completions
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+  complete -C aws_completer aws
+fi
+
+# BetterCompany dev shortcut
+function develop() {
+  $HOME/Code/bco/usul/edric/develop $@
+}
+
 eval "$(rbenv init -)"
