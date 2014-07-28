@@ -3,3 +3,5 @@ if [ -f ~/.bashrc ]; then
        fi
 
 archey -c
+
+if [ -e /Users/tristan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/tristan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
