@@ -31,7 +31,6 @@ syntax on
 autocmd BufRead,BufNewFile *.py let python_highlight_all=1
 autocmd BufRead,BufNewFile *.py :Python2Syntax
 autocmd BufRead,BufNewFile *.py inoremap # X<C-h>#
-autocmd BufRead,BufNewFile *.py set tabstop=4 softtabstop=4 shiftwidth=4
 
 colorscheme tristan
 
@@ -65,7 +64,7 @@ set ruler
 set pastetoggle=<F6>
 let mapleader=","
 
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_html_checkers=['']
 
