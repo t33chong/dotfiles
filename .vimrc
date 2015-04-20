@@ -18,6 +18,7 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
+Bundle 'vimoutliner/vimoutliner'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -48,6 +49,7 @@ set incsearch
 set showmatch
 
 set number
+set linebreak
 
 inoremap <S-tab> <C-d>
 
