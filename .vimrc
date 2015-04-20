@@ -48,6 +48,7 @@ set incsearch
 set showmatch
 
 set number
+set linebreak
 
 inoremap <S-tab> <C-d>
 
