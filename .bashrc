@@ -73,5 +73,5 @@ function extract()      # Handy Extract Program
 }
 
 function lookfor { 
-    find . -name "$2" | xargs grep --color=always -in "$1" | less -R
+    find . -name "$2" | xargs grep --color=always -in "$1" | sort | less -R
 }
