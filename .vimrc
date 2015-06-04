@@ -18,7 +18,6 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
-Bundle 'vimoutliner/vimoutliner'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -29,10 +28,13 @@ endif
 
 filetype plugin indent on
 syntax on
-autocmd BufRead,BufNewFile *.py let python_highlight_all=1
-autocmd BufRead,BufNewFile *.py :Python2Syntax
-autocmd BufRead,BufNewFile *.py inoremap # X<C-h>#
-autocmd BufRead,BufNewFile *.py set tabstop=4 softtabstop=4 shiftwidth=4
+autocmd BufRead,BufNewFile *.py set ft=py
+autocmd FileType py set syntax=python
+autocmd FileType py let python_highlight_all=1
+autocmd FileType py :Python2Syntax
+autocmd FileType py inoremap # X<C-h>#
+autocmd FileType py set tabstop=4 softtabstop=4 shiftwidth=4
+autocmd BufRead,BufNewFile *.txt set linebreak
 
 colorscheme tristan
 
@@ -49,7 +51,6 @@ set incsearch
 set showmatch
 
 set number
-set linebreak
 
 inoremap <S-tab> <C-d>
 
