@@ -36,6 +36,10 @@ alias tm="tmux"
 alias tma="tmux attach"
 alias grep="grep -n --color=always"
 
+function gsw {
+    git show HEAD:$1 | vim - "+set filetype=${1##*.}";
+}
+
 export MARKPATH=$HOME/.marks
 function jump { 
         cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
