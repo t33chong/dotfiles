@@ -34,6 +34,8 @@ autocmd FileType py let python_highlight_all=1
 autocmd FileType py :Python2Syntax
 autocmd FileType py inoremap # X<C-h>#
 autocmd FileType py set tabstop=4 softtabstop=4 shiftwidth=4
+autocmd BufRead,BufNewFile *.rb set ft=rb
+autocmd FileType rb set syntax=ruby
 autocmd BufRead,BufNewFile *.txt set linebreak
 
 colorscheme tristan
