@@ -37,7 +37,9 @@ alias tma="tmux attach"
 alias grep="grep -n --color=always"
 
 function gsw {
-    git show HEAD:$1 | vim - "+set filetype=${1##*.}";
+  local offset=${2-0}
+  local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
+  git show $commit:./$1 | vim - "+set filetype=${1##*.}";
 }
 
 export MARKPATH=$HOME/.marks
@@ -77,7 +79,7 @@ function extract()      # Handy Extract Program
 }
 
 function lookfor { 
-    find . -name "$2" | xargs grep --color=always -in "$1" | sort | less -R
+    find ${3-.} -name "$2" | xargs grep --color=always -in "$1" | sort | less -R
 }
 
 # bash completions
