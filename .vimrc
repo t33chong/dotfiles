@@ -19,6 +19,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'vim-scripts/ruby-matchit'
+Bundle 'kchmck/vim-coffee-script'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
