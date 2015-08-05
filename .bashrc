@@ -89,9 +89,4 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   complete -C aws_completer aws
 fi
 
-# BetterCompany dev shortcut
-function develop() {
-  $HOME/Code/bco/usul/edric/develop $@
-}
-
 eval "$(rbenv init -)"
