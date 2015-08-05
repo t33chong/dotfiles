@@ -34,8 +34,7 @@ alias gsl="git stash list"
 alias gsa="git stash apply"
 alias gsp="git stash pop"
 alias scr="screen"
-alias tm="TERM=xterm-256color tmux"
-alias tma="TERM=xterm-256color tmux attach"
+alias tm="TERM=xterm-256color tmux attach"
 alias grep="grep -n --color=always"
 
 function gsw {
