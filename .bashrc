@@ -1,5 +1,4 @@
 export PS1="\[\e[32;1m\]\u@\h:\[\e[36;1m\]\w\$ \[\e[0m\]"
-export PROMPT_COMMAND='echo -ne "\033]0;${_}\007"'
 export EDITOR=vim
 export PATH=$PATH:$HOME/.bin
 export LESS="-R"
@@ -35,8 +34,7 @@ alias gsl="git stash list"
 alias gsa="git stash apply"
 alias gsp="git stash pop"
 alias scr="screen"
-alias tm="tmux"
-alias tma="tmux attach"
+alias tm="TERM=xterm-256color tmux attach"
 alias grep="grep -n --color=always"
 
 function gsw {
