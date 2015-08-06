@@ -31,14 +31,14 @@ endif
 
 filetype plugin indent on
 syntax on
-autocmd BufRead,BufNewFile *.py set ft=py
-autocmd FileType py set syntax=python
-autocmd FileType py let python_highlight_all=1
-autocmd FileType py :Python2Syntax
-autocmd FileType py inoremap # X<C-h>#
-autocmd FileType py set tabstop=4 softtabstop=4 shiftwidth=4
-autocmd BufRead,BufNewFile *.rb set ft=rb
-autocmd FileType rb set syntax=ruby
+autocmd FileType py set ft=python
+autocmd FileType python set syntax=python
+autocmd FileType python let python_highlight_all=1
+autocmd FileType python :Python2Syntax
+autocmd FileType python inoremap # X<C-h>#
+autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4
+autocmd FileType rb set ft=ruby
+autocmd FileType ruby set syntax=ruby
 autocmd BufRead,BufNewFile *.txt set linebreak
 
 colorscheme tristan
@@ -72,9 +72,18 @@ set ls=2
 set pastetoggle=<F6>
 let mapleader=","
 
-let g:syntastic_check_on_open=1
-let g:syntastic_python_checkers=['flake8']
+set statusline=%f
+set statusline+=\ %#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_ruby_checkers=['rubocop']
 
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
