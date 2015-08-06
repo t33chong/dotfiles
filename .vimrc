@@ -16,6 +16,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-obsession'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
@@ -73,7 +74,7 @@ set ruler
 set pastetoggle=<F6>
 let mapleader=","
 
-set statusline=%f
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -119,9 +120,9 @@ function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
   endwhile
 endfunction
 
-nnoremap <silent> [[ :call NextIndent(0, 0, 0, 1)<CR>
-nnoremap <silent> ]] :call NextIndent(0, 1, 0, 1)<CR>
-vnoremap <silent> [[ <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
-vnoremap <silent> ]] <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
-onoremap <silent> [[ :call NextIndent(0, 0, 0, 1)<CR>
-onoremap <silent> ]] :call NextIndent(0, 1, 0, 1)<CR>
+nnoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
+nnoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
+vnoremap <silent> [i <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
+vnoremap <silent> ]i <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
+onoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
+onoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
