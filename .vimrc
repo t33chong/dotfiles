@@ -84,6 +84,7 @@ let g:syntastic_python_checkers=['flake8']
 let g:syntastic_ruby_checkers=['rubocop']
 
 nnoremap <C-w>e :SyntasticCheck<CR>
+nnoremap <C-w>E :SyntasticToggle<CR>
 
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
