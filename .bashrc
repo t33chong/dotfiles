@@ -46,6 +46,14 @@ function gsw {
   git show $commit:./$1 | vim - "+set filetype=${1##*.}";
 }
 
+function kstg {
+    bundle exec knife $@ -c ~/.chef/stg/knife.rb
+}
+
+function kprod {
+    bundle exec knife $@ -c ~/.chef/prod/knife.rb
+}
+
 export MARKPATH=$HOME/.marks
 function jump { 
         cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
