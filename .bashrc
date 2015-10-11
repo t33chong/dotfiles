@@ -46,25 +46,25 @@ function gsw {
 }
 
 function kstg {
-    bundle exec knife $@ -c ~/.chef/stg/knife.rb
+  bundle exec knife $@ -c ~/.chef/stg/knife.rb
 }
 
 function kprod {
-    bundle exec knife $@ -c ~/.chef/prod/knife.rb
+  bundle exec knife $@ -c ~/.chef/prod/knife.rb
 }
 
 export MARKPATH=$HOME/.marks
 function jump { 
-        cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
+  cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
 }
 function mark { 
-        mkdir -p $MARKPATH; ln -s $(pwd) $MARKPATH/$1
+  mkdir -p $MARKPATH; ln -s $(pwd) $MARKPATH/$1
 }
 function unmark { 
-        rm -i $MARKPATH/$1 
+  rm -i $MARKPATH/$1
 }
 function marks {
-        ls -l $MARKPATH | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+  ls -l $MARKPATH | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 
 function extract()      # Handy Extract Program
@@ -90,7 +90,11 @@ function extract()      # Handy Extract Program
 }
 
 function lookfor { 
-    find ${3-.} -name "$2" | xargs grep --color=always -in "$1" | sort | less -R
+  find ${3-.} -name "$2" | xargs grep --color=always -in "$1" | sort | less -R
+}
+
+function vag {
+  vim -c "setlocal shellpipe=>" -c "Ack $*"
 }
 
 # bash completions

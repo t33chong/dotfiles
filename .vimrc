@@ -20,8 +20,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
-" Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'kchmck/vim-coffee-script'
 
 if VundleNotInstalled == 0
@@ -134,6 +133,12 @@ vnoremap <silent> ]i <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
 onoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
 onoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
 
-" let g:ackprg = 'ag --vimgrep'
-" let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:agprg = 'ag --nogroup --nocolor --column'
+au FileType qf call AdjustWindowHeight(1, 20)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ack_autoclose = 1
+let g:ackhighlight = 1
+let g:ackpreview = 1
