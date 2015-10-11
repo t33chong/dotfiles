@@ -146,3 +146,15 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ack_autoclose = 1
 let g:ackhighlight = 1
 let g:ackpreview = 1
+
+func CheckSwap()
+  swapname
+  if v:statusmsg =~ '\.sw[^p]$'
+    set ro
+  endif
+endfunc
+
+if &swf
+  set shm+=A
+  au BufReadPre * call CheckSwap()
+endif
