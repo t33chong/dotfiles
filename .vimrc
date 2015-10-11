@@ -20,6 +20,8 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
+" Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'kchmck/vim-coffee-script'
 
 if VundleNotInstalled == 0
@@ -64,6 +66,11 @@ set colorcolumn=80
 set noeb vb t_vb=
 
 nnoremap \ :noh<CR>
+
+nnoremap <C-j> 10j
+nnoremap <C-k> 10k
+vnoremap <C-j> 10j
+vnoremap <C-k> 10k
 
 let &t_Co=256
 
@@ -126,3 +133,7 @@ vnoremap <silent> [i <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
 vnoremap <silent> ]i <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
 onoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
 onoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
+
+" let g:ackprg = 'ag --vimgrep'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:agprg = 'ag --nogroup --nocolor --column'
