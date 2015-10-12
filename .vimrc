@@ -58,7 +58,7 @@ set colorcolumn=80
 
 set noeb vb t_vb=
 
-nnoremap \ :noh<CR>
+nnoremap <silent> \ :noh<CR>
 
 nnoremap <C-j> 10j
 nnoremap <C-k> 10k
