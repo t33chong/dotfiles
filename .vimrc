@@ -32,15 +32,6 @@ endif
 
 filetype plugin indent on
 syntax on
-autocmd FileType py set ft=python
-autocmd FileType python set syntax=python
-autocmd FileType python let python_highlight_all=1
-autocmd FileType python :Python2Syntax
-autocmd FileType python inoremap # X<C-h>#
-autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4
-autocmd FileType rb set ft=ruby
-autocmd FileType ruby set syntax=ruby
-autocmd BufRead,BufNewFile *.txt set linebreak
 
 colorscheme tristan
 
@@ -57,6 +48,9 @@ set incsearch
 set showmatch
 
 set number
+
+set foldmethod=indent
+set nofoldenable
 
 inoremap <S-tab> <C-d>
 
@@ -83,6 +77,25 @@ set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+autocmd FileType py set ft=python
+autocmd FileType python set syntax=python
+autocmd FileType python let python_highlight_all=1
+autocmd FileType python :Python2Syntax
+autocmd FileType python inoremap # X<C-h>#
+autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4
+autocmd FileType rb set ft=ruby
+autocmd FileType ruby set syntax=ruby
+autocmd BufRead,BufNewFile *.txt,*.md set linebreak
+
+function! RubyMethodFold(line)
+  let line_is_method_or_end = synIDattr(synID(a:line,1,0), 'name') == 'rubyMethodBlock'
+  let line_is_def = getline(a:line) =~ '\s*def '
+  return line_is_method_or_end || line_is_def
+endfunction
+
+autocmd FileType ruby set foldexpr=RubyMethodFold(v:lnum)
+autocmd FileType ruby set foldmethod=expr
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
