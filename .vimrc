@@ -42,7 +42,8 @@ set expandtab
 set softtabstop=2
 set smartindent
 set autoindent
-
+set ignorecase
+set smartcase
 set hlsearch
 set incsearch
 set showmatch
