@@ -82,6 +82,12 @@ set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" When editing a file, always jump to the last known cursor position
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
 autocmd FileType py set ft=python
 autocmd FileType python set syntax=python
 autocmd FileType python let python_highlight_all=1
