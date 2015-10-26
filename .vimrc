@@ -181,3 +181,6 @@ if &swf
   set shm+=A
   au BufReadPre * call CheckSwap()
 endif
+
+set cursorline
+highlight cursorline ctermbg=235
