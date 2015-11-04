@@ -45,6 +45,10 @@ function gsw {
   git show $commit:./$1 | vim - "+set filetype=${1##*.}";
 }
 
+function up {
+  cd $(eval printf '../%.s' {1..${1-1}})
+}
+
 function kstg {
   bundle exec knife $@ -c ~/.chef/stg/knife.rb
 }
