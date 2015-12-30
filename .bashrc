@@ -58,7 +58,7 @@ function kprod {
 }
 
 export MARKPATH=$HOME/.marks
-function jump { 
+function to {
   cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
 }
 function mark { 
@@ -98,7 +98,7 @@ function lookfor {
 }
 
 function vag {
-  vim -c "setlocal shellpipe=>" -c "Ack $*"
+  vim -c "setlocal shellpipe=>" -c "Ack '$1' ${2-.}"
 }
 
 # bash completions
