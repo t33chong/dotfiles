@@ -1,6 +1,7 @@
 export PS1="\[\e[32;1m\]\u@\h:\[\e[36;1m\]\w\$ \[\e[0m\]"
 export EDITOR=vim
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin
+export GOPATH=$HOME/Code/golang
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin
 export LESS="-R"
 
 alias ls="ls -G"
@@ -43,6 +44,10 @@ function gsw {
   local offset=${2-0}
   local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
   git show $commit:./$1 | vim - "+set filetype=${1##*.}";
+}
+
+function gsha {
+  git stash apply stash@{${1-0}}
 }
 
 function up {
