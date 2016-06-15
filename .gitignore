@@ -1,0 +1,6 @@
+.vim/backup/*
+!.vim/backup/.gitkeep
+.vim/bundle/*
+!.vim/bundle/.gitkeep
+.vim/swap/*
+!.vim/swap/.gitkeep

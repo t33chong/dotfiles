@@ -21,7 +21,9 @@ Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'mileszs/ack.vim'
+Bundle 'majutsushi/tagbar'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'fatih/vim-go'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -58,6 +60,9 @@ inoremap <S-tab> <C-d>
 set colorcolumn=80
 
 set noeb vb t_vb=
+
+set backupdir=$HOME/.vim/backup//
+set directory=$HOME/.vim/swap//
 
 nnoremap <silent> \ :noh<CR>
 
@@ -117,8 +122,11 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": [] }
 
-nnoremap <C-w>e :SyntasticCheck<CR>
-nnoremap <C-w>E :SyntasticToggle<CR>
+nnoremap <leader>s :SyntasticCheck<CR>
+nnoremap <leader>S :SyntasticToggle<CR>
+
+let g:tagbar_width = winwidth('%') - 85
+nnoremap <leader>t :TagbarToggle<CR>
 
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
