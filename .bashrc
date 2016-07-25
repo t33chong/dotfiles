@@ -39,6 +39,11 @@ alias gsh="git stash"
 alias scr="screen"
 alias tm="TERM=xterm-256color tmux attach"
 alias grep="grep -n --color=always"
+alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
+
+# This + iTerm2 config means alt+backspace deletes until previous /
+stty werase undef
+bind '"\C-w": unix-filename-rubout'
 
 function gsw {
   local offset=${2-0}
@@ -104,6 +109,10 @@ function lookfor {
 
 function vag {
   vim -c "setlocal shellpipe=>" -c "Ack '$1' ${2-.}"
+}
+
+function rm_recursive {
+  find . -type f -name "$1" -delete
 }
 
 # bash completions
