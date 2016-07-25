@@ -24,6 +24,8 @@ Bundle 'mileszs/ack.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'fatih/vim-go'
+Bundle 'pangloss/vim-javascript'
+Bundle 'joukevandermaas/vim-ember-hbs'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
