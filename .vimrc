@@ -15,13 +15,22 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-obsession'
+Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'easymotion/vim-easymotion'
+" Bundle 'terryma/vim-multiple-cursors'
+Bundle 'vim-scripts/YankRing.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'mileszs/ack.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'tpope/vim-endwise'
+Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'fatih/vim-go'
 Bundle 'pangloss/vim-javascript'
@@ -84,10 +93,16 @@ set ruler
 set pastetoggle=<F6>
 let mapleader=","
 
+map <Leader> <Plug>(easymotion-prefix)
+
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+" This eliminates the hit-enter prompt caused by a long swap file path
+set cmdheight=3
+autocmd BufEnter * set cmdheight=1
 
 " When editing a file, always jump to the last known cursor position
 autocmd BufReadPost *
@@ -124,8 +139,8 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": [] }
 
-nnoremap <leader>s :SyntasticCheck<CR>
-nnoremap <leader>S :SyntasticToggle<CR>
+nnoremap <leader>l :SyntasticCheck<CR>
+nnoremap <leader>L :SyntasticToggle<CR>
 
 let g:tagbar_width = winwidth('%') - 85
 nnoremap <leader>t :TagbarToggle<CR>
@@ -194,3 +209,12 @@ endif
 
 set cursorline
 highlight cursorline ctermbg=235
+
+" vim-indent-guides configuration
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
+
+noremap <leader>p :YRShow<CR>
