@@ -60,6 +60,7 @@ set smartcase
 set hlsearch
 set incsearch
 set showmatch
+set backspace=indent,eol,start
 
 set number
 
