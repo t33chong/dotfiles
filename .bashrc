@@ -40,6 +40,7 @@ alias scr="screen"
 alias tm="TERM=xterm-256color tmux attach"
 alias grep="grep -n --color=always"
 alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
+alias dockerpls="eval $(docker-machine env default)"
 
 # This + iTerm2 config means alt+backspace deletes until previous /
 stty werase undef
