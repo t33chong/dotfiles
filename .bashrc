@@ -54,6 +54,10 @@ function gsw {
   git show $commit:./$1 | vim - "+set filetype=${1##*.}";
 }
 
+function gshs {
+  git stash save "$(date) - $1"
+}
+
 function gsha {
   git stash apply stash@{${1-0}}
 }
