@@ -68,8 +68,7 @@ set number
 set foldmethod=indent
 set nofoldenable
 
-" This breaks delimitmate:
-" inoremap <S-tab> <C-d>
+inoremap <S-tab> <C-d>
 
 set colorcolumn=80
 
@@ -225,3 +224,6 @@ noremap <leader>p :YRShow<CR>
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
+
+imap <C-@> <Plug>delimitMateS-Tab
+imap <C-_> <Plug>delimitMateJumpMany

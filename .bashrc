@@ -36,6 +36,7 @@ alias grb="git rebase -i"
 alias gro="git remote"
 alias grh="git reset HEAD"
 alias gsh="git stash"
+alias gshl="git stash list"
 alias scr="screen"
 alias tm="TERM=xterm-256color tmux attach"
 alias grep="grep -n --color=always"
@@ -55,7 +56,7 @@ function gsw {
 }
 
 function gshs {
-  git stash save "$(date) - $1"
+  git stash save "[$(date)] $1"
 }
 
 function gsha {
