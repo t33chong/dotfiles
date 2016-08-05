@@ -36,7 +36,8 @@ alias grb="git rebase -i"
 alias gro="git remote"
 alias grh="git reset HEAD"
 alias gsh="git stash"
-alias gshl="git stash list"
+alias gshl="git stash list --format='%gd [%cr] %gs'"
+alias gshs="git stash save"
 alias scr="screen"
 alias tm="TERM=xterm-256color tmux attach"
 alias grep="grep -n --color=always"
@@ -53,10 +54,6 @@ function gsw {
   local offset=${2-0}
   local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
   git show $commit:./$1 | vim - "+set filetype=${1##*.}";
-}
-
-function gshs {
-  git stash save "[$(date)] $1"
 }
 
 function gsha {
