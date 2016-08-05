@@ -24,6 +24,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'easymotion/vim-easymotion'
 " Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/YankRing.vim'
+Bundle 'raimondi/delimitmate'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
@@ -67,7 +68,8 @@ set number
 set foldmethod=indent
 set nofoldenable
 
-inoremap <S-tab> <C-d>
+" This breaks delimitmate:
+" inoremap <S-tab> <C-d>
 
 set colorcolumn=80
 
@@ -216,6 +218,10 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
 
 noremap <leader>p :YRShow<CR>
+
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+let delimitMate_jump_expansion = 1
