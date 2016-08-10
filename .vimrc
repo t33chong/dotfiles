@@ -22,6 +22,9 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'easymotion/vim-easymotion'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'mattn/emmet-vim'
+Bundle 'AndrewRadev/splitjoin.vim'
 " Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'raimondi/delimitmate'
@@ -76,6 +79,8 @@ set noeb vb t_vb=
 
 set backupdir=$HOME/.vim/backup//
 set directory=$HOME/.vim/swap//
+
+set clipboard=unnamed
 
 nnoremap <silent> \ :noh<CR>
 
