@@ -149,8 +149,10 @@ let g:syntastic_mode_map = {
 nnoremap <leader>l :SyntasticCheck<CR>
 nnoremap <leader>L :SyntasticToggle<CR>
 
-let g:tagbar_width = winwidth('%') - 85
-nnoremap <leader>t :TagbarToggle<CR>
+function! SetTagbarWidth()
+  let g:tagbar_width = winwidth('%') - 85
+endfunction
+nnoremap <leader>t :call SetTagbarWidth()<CR>:TagbarToggle<CR>
 
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
