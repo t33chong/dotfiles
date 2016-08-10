@@ -113,7 +113,7 @@ function lookfor {
 }
 
 function vag {
-  vim -c "setlocal shellpipe=>" -c "Ack '$1' ${2-.}"
+  vim -n -c "setlocal shellpipe=>" -c "Ack '$1' ${2-.}"
 }
 
 function rm_recursive {
