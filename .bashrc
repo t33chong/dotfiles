@@ -43,7 +43,6 @@ alias tm="TERM=xterm-256color tmux attach"
 alias grep="grep -n --color=always"
 alias pls='sudo bash -c "$(fc -nl -1)"'
 alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
-alias dockerpls="eval $(docker-machine env default)"
 alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
 
 # This + iTerm2 config means alt+backspace deletes until previous /
@@ -118,6 +117,10 @@ function vag {
 
 function rm_recursive {
   find . -type f -name "$1" -delete
+}
+
+function dockerpls {
+  eval $(docker-machine env default)
 }
 
 # bash completions
