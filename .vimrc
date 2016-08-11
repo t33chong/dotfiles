@@ -89,6 +89,9 @@ nnoremap <C-k> 10k
 vnoremap <C-j> 10j
 vnoremap <C-k> 10k
 
+nnoremap ' `
+vnoremap ' `
+
 " Retain cursor position after yanking a visual block
 vmap y ygv<Esc>
 
