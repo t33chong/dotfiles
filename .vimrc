@@ -38,7 +38,7 @@ Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'fatih/vim-go'
 Bundle 'pangloss/vim-javascript'
-Bundle 'joukevandermaas/vim-ember-hbs'
+Bundle 'mustache/vim-mustache-handlebars'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -237,3 +237,5 @@ let delimitMate_jump_expansion = 1
 
 imap <C-@> <Plug>delimitMateS-Tab
 imap <C-_> <Plug>delimitMateJumpMany
+
+let g:mustache_abbreviations = 1
