@@ -139,6 +139,8 @@ endfunction
 autocmd FileType ruby set foldexpr=RubyMethodFold(v:lnum)
 autocmd FileType ruby set foldmethod=expr
 
+autocmd BufRead,BufNewFile *.jbuilder set ft=ruby
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_html_checkers=['']
@@ -239,3 +241,4 @@ imap <C-@> <Plug>delimitMateS-Tab
 imap <C-_> <Plug>delimitMateJumpMany
 
 let g:mustache_abbreviations = 1
+let g:vim_json_syntax_conceal = 0
