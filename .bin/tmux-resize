@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Expected width & height values:
 # 1440 x 900:  204 x 59

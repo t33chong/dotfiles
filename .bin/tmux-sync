@@ -1,0 +1,10 @@
+#!/bin/bash
+
+synced="$(tmux display-message -p '#{pane_synchronized}')"
+
+if [ $synced -eq 1 ]
+then
+  echo " #[bg=red]SYNC"
+else
+  echo "     "
+fi
