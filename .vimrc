@@ -15,6 +15,7 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
@@ -85,11 +86,6 @@ set directory=$HOME/.vim/swap//
 set clipboard=unnamed
 
 nnoremap <silent> \ :noh<CR>
-
-nnoremap <C-j> 10j
-nnoremap <C-k> 10k
-vnoremap <C-j> 10j
-vnoremap <C-k> 10k
 
 nnoremap ' `
 vnoremap ' `
@@ -253,3 +249,10 @@ command Greview :Git! diff --staged
 nnoremap <leader>go :Gread<CR>
 nnoremap <leader>gr :Greview<CR>
 nnoremap <leader>gs :Gstatus<CR>
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
