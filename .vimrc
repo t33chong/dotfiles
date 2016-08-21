@@ -77,8 +77,6 @@ set nofoldenable
 
 set showcmd
 
-inoremap <S-tab> <C-d>
-
 set colorcolumn=80
 
 set noeb vb t_vb=
@@ -239,8 +237,12 @@ let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
-imap <C-@> <Plug>delimitMateS-Tab
-imap <C-_> <Plug>delimitMateJumpMany
+inoremap <expr> <Tab> delimitMate#ShouldJump() ?
+      \ "\<C-R>=delimitMate#JumpAny()<CR>" :
+      \ "\<Tab>"
+inoremap <expr> <S-Tab> delimitMate#ShouldJump() ?
+      \ "\<C-R>=delimitMate#JumpMany()<CR>" :
+      \ "\<C-d>"
 
 let g:mustache_abbreviations = 1
 let g:vim_json_syntax_conceal = 0
