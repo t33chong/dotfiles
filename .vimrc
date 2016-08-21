@@ -15,6 +15,7 @@ endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'tmux-plugins/vim-tmux-focus-events'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
@@ -31,6 +32,7 @@ Bundle 'vim-scripts/YankRing.vim'
 Bundle 'raimondi/delimitmate'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'junegunn/fzf.vim'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'mileszs/ack.vim'
@@ -100,7 +102,8 @@ set ls=2
 set ruler
 
 set pastetoggle=<F6>
-let mapleader=","
+" let mapleader=","
+let mapleader=";"
 
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -156,7 +159,7 @@ nnoremap <leader>L :SyntasticToggle<CR>
 function! SetTagbarWidth()
   let g:tagbar_width = winwidth('%') - 85
 endfunction
-nnoremap <leader>t :call SetTagbarWidth()<CR>:TagbarToggle<CR>
+nnoremap <silent> <leader>t :call SetTagbarWidth()<CR>:TagbarToggle<CR>
 
 " Jump to the next or previous line that has the same level or a lower
 " level of indentation than the current line.
@@ -257,8 +260,29 @@ nnoremap <silent> <C-h> :wincmd h<cr>
 nnoremap <silent> <C-j> :wincmd j<cr>
 nnoremap <silent> <C-k> :wincmd k<cr>
 nnoremap <silent> <C-l> :wincmd l<cr>
-hi StatusLine ctermbg=yellow
-hi StatusLineNC ctermbg=white
+
+hi StatusLine ctermbg=white ctermfg=black
+hi StatusLineNC ctermbg=235 ctermfg=white
+
+" augroup StatusHighlight
+"   autocmd!
+"   autocmd WinEnter *
+"         \ if winnr('$') > 1 |
+"         \   hi StatusLine ctermbg=yellow |
+"         \ else |
+"         \   hi StatusLine ctermbg=white |
+"         \ endif
+"   autocmd WinLeave * hi StatusLine ctermbg=white
+" augroup END
+
+nnoremap <C-x> <C-w>c
+nnoremap <silent> <leader><Tab> :NERDTreeToggle<CR>
+nnoremap <silent> <leader><Space> :FZF<CR>
 
 nnoremap <leader>d :vsplit<CR>
 nnoremap <leader>D :split<CR>
+
+set rtp+=/usr/local/opt/fzf
+
+let g:yankring_history_dir = '$HOME/.vim'
+let g:yankring_history_file = '.yankring_history'

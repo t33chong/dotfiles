@@ -130,3 +130,5 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 eval "$(rbenv init -)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
