@@ -17,6 +17,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
@@ -28,6 +29,7 @@ Bundle 'AndrewRadev/splitjoin.vim'
 " Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'raimondi/delimitmate'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
@@ -242,3 +244,12 @@ imap <C-_> <Plug>delimitMateJumpMany
 
 let g:mustache_abbreviations = 1
 let g:vim_json_syntax_conceal = 0
+
+nnoremap <leader>ga :Gwrite<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gd :Gvdiff<CR>
+command Greview :Git! diff --staged
+nnoremap <leader>go :Gread<CR>
+nnoremap <leader>gr :Greview<CR>
+nnoremap <leader>gs :Gstatus<CR>
