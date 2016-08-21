@@ -73,6 +73,8 @@ set number
 set foldmethod=indent
 set nofoldenable
 
+set showcmd
+
 inoremap <S-tab> <C-d>
 
 set colorcolumn=80
@@ -257,3 +259,6 @@ nnoremap <silent> <C-k> :wincmd k<cr>
 nnoremap <silent> <C-l> :wincmd l<cr>
 hi StatusLine ctermbg=yellow
 hi StatusLineNC ctermbg=white
+
+nnoremap <leader>d :vsplit<CR>
+nnoremap <leader>D :split<CR>
