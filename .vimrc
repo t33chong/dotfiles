@@ -255,3 +255,5 @@ nnoremap <silent> <C-h> :wincmd h<cr>
 nnoremap <silent> <C-j> :wincmd j<cr>
 nnoremap <silent> <C-k> :wincmd k<cr>
 nnoremap <silent> <C-l> :wincmd l<cr>
+hi StatusLine ctermbg=yellow
+hi StatusLineNC ctermbg=white
