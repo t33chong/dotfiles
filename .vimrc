@@ -33,6 +33,7 @@ Bundle 'raimondi/delimitmate'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'junegunn/fzf.vim'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'mileszs/ack.vim'
@@ -86,7 +87,10 @@ set directory=$HOME/.vim/swap//
 
 set clipboard=unnamed
 
+set updatetime=250
+
 nnoremap <silent> \ :noh<CR>
+nnoremap <silent> \| :set noro<CR>
 
 nnoremap ' `
 vnoremap ' `
@@ -155,7 +159,7 @@ nnoremap <leader>l :SyntasticCheck<CR>
 nnoremap <leader>L :SyntasticToggle<CR>
 
 function! SetTagbarWidth()
-  let g:tagbar_width = winwidth('%') - 85
+  let g:tagbar_width = winwidth('%') - 87
 endfunction
 nnoremap <silent> <leader>t :call SetTagbarWidth()<CR>:TagbarToggle<CR>
 
@@ -256,15 +260,13 @@ nnoremap <leader>go :Gread<CR>
 nnoremap <leader>gr :Greview<CR>
 nnoremap <leader>gs :Gstatus<CR>
 
-let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <C-h> :wincmd h<cr>
 nnoremap <silent> <C-j> :wincmd j<cr>
 nnoremap <silent> <C-k> :wincmd k<cr>
 nnoremap <silent> <C-l> :wincmd l<cr>
 
 hi StatusLine ctermbg=white ctermfg=black
-hi StatusLineNC ctermbg=235 ctermfg=white
+hi StatusLineNC ctermbg=240 ctermfg=white
 
 " augroup StatusHighlight
 "   autocmd!
@@ -288,3 +290,5 @@ set rtp+=/usr/local/opt/fzf
 
 let g:yankring_history_dir = '$HOME/.vim'
 let g:yankring_history_file = '.yankring_history'
+
+let g:gitgutter_sign_column_always = 1
