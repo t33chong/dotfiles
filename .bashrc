@@ -6,6 +6,7 @@ export LESS="-R"
 
 alias ls="ls -G"
 alias vi="vim"
+alias vbi="vim -c 'BundleInstall'"
 alias py="python"
 alias venv=". .env/bin/activate"
 alias py3="python3"
