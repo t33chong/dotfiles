@@ -7,14 +7,13 @@ export LESS="-R"
 alias ls="ls -G"
 alias vi="vim"
 alias py="python"
-alias spy="sudo python"
 alias venv=". .env/bin/activate"
 alias py3="python3"
-alias spy3="sudo python3"
 alias ir="irb --simple-prompt"
 alias bi="bundle install"
 alias be="bundle exec"
 alias bu="bundle update"
+alias brake="bundle exec rake"
 alias gad="git add"
 alias grm="git rm"
 alias gmv="git mv"
@@ -44,6 +43,7 @@ alias grep="grep -n --color=always"
 alias pls='sudo bash -c "$(fc -nl -1)"'
 alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
 alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
+alias dc="docker-compose"
 
 # This + iTerm2 config means alt+backspace deletes until previous /
 stty werase undef
