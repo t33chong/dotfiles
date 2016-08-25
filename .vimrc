@@ -34,6 +34,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'junegunn/fzf.vim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'junkblocker/patchreview-vim'
+Bundle 'codegram/vim-codereview'
+Bundle 'mkitt/tabline.vim'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'mileszs/ack.vim'
@@ -292,3 +295,5 @@ let g:yankring_history_dir = '$HOME/.vim'
 let g:yankring_history_file = '.yankring_history'
 
 let g:gitgutter_sign_column_always = 1
+
+let g:patchreview_split_right = 1

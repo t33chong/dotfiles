@@ -116,6 +116,10 @@ function vag {
   vim -n -c "setlocal shellpipe=>" -c "Ack '$1' ${2-.}"
 }
 
+function vcr {
+  vim -c "CodeReview $1"
+}
+
 function rm_recursive {
   find . -type f -name "$1" -delete
 }

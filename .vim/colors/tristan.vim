@@ -39,13 +39,13 @@ hi SpellRare    guifg=NONE          guibg=NONE          gui=undercurl
             \   ctermfg=white       ctermbg=darkmagenta guisp=#ff22ee   
 
 hi DiffAdd      guifg=#ffffff       guibg=#126493       gui=NONE
-            \   ctermfg=white       ctermbg=darkblue    cterm=NONE
+            \   ctermfg=black       ctermbg=green       cterm=NONE
 hi DiffChange   guifg=#000000       guibg=#976398       gui=NONE
-            \   ctermfg=black       ctermbg=darkmagenta cterm=NONE
+            \   ctermfg=black       ctermbg=yellow      cterm=NONE
 hi DiffDelete   guifg=#000000       guibg=#be1923       gui=bold
-            \   ctermfg=black       ctermbg=red         cterm=bold
+            \   ctermfg=black       ctermbg=red         cterm=NONE
 hi DiffText     guifg=#ffffff       guibg=#976398       gui=bold
-            \   ctermfg=white       ctermbg=green       cterm=bold
+            \   ctermfg=black       ctermbg=green       cterm=bold
 
 " }}}
 " borders / separators / menus {{{
@@ -100,9 +100,9 @@ hi Visual       guifg=#ffffff       guibg=#606070       gui=NONE
             \   ctermfg=white       ctermbg=lightblue   cterm=NONE
 
 hi IncSearch    guifg=#000000       guibg=#eedd33       gui=bold 
-            \   ctermfg=white       ctermbg=yellow      cterm=NONE
+            \   ctermfg=black       ctermbg=yellow      cterm=bold
 hi Search       guifg=#efefd0       guibg=#937340       gui=NONE
-            \   ctermfg=white       ctermbg=darkgreen   cterm=NONE
+            \   ctermfg=black       ctermbg=darkgreen       cterm=bold
 
 hi MatchParen   guifg=NONE          guibg=#3377aa       gui=NONE
             \   ctermfg=white       ctermbg=blue        cterm=NONE
