@@ -41,6 +41,8 @@ Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'mileszs/ack.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'kana/vim-textobj-user'
 Bundle 'tpope/vim-endwise'
 Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
@@ -297,3 +299,5 @@ let g:yankring_history_file = '.yankring_history'
 let g:gitgutter_sign_column_always = 1
 
 let g:patchreview_split_right = 1
+
+command CopyPath :!echo -n % | pbcopy
