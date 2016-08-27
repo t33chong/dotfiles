@@ -45,6 +45,7 @@ alias pls='sudo bash -c "$(fc -nl -1)"'
 alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
 alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
 alias dc="docker-compose"
+alias zk="sudo /opt/zookeeper/bin/zkServer.sh"
 
 # This + iTerm2 config means alt+backspace deletes until previous /
 stty werase undef
@@ -134,6 +135,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   complete -C aws_completer aws
 fi
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

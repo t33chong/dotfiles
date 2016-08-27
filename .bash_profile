@@ -6,3 +6,5 @@ if [ -e /Users/tristan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/trista
 
 $(boot2docker shellinit 2>/dev/null)
 archey -c
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
