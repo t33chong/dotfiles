@@ -23,4 +23,7 @@ git_repo_color() {
   fi
 }
 
-PROMPT='%B%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%}$%b '
+MODE_INDICATOR="%{$fg[yellow]%}"
+
+PROMPT='%B%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%} $(vi_mode_prompt_info)$%b %{$reset_color%}'
+RPROMPT=""
