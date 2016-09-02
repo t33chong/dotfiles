@@ -93,6 +93,8 @@ set directory=$HOME/.vim/swap//
 set clipboard=unnamed
 
 set updatetime=250
+" set timeoutlen=1000 ttimeoutlen=10
+" set esckeys
 
 nnoremap <silent> \ :noh<CR>
 nnoremap <silent> \| :set noro<CR>
@@ -109,15 +111,22 @@ set ls=2
 set ruler
 
 set pastetoggle=<F6>
-" let mapleader=","
 let mapleader=";"
 
 map <Leader> <Plug>(easymotion-prefix)
+
+function! StatuslineBranch()
+  if strlen(fugitive#head()) > 0
+    return '(' . fugitive#head() . ') '
+  endif
+  return ''
+endfunction
 
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set statusline^=%{StatuslineBranch()}
 
 " This eliminates the hit-enter prompt caused by a long swap file path
 set cmdheight=3
@@ -201,12 +210,12 @@ function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
   endwhile
 endfunction
 
-nnoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
-nnoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
-vnoremap <silent> [i <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
-vnoremap <silent> ]i <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
-onoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
-onoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
+" nnoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
+" nnoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
+" vnoremap <silent> [i <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
+" vnoremap <silent> ]i <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
+" onoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
+" onoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
 
 au FileType qf call AdjustWindowHeight(1, 20)
 function! AdjustWindowHeight(minheight, maxheight)
@@ -301,3 +310,7 @@ let g:gitgutter_sign_column_always = 1
 let g:patchreview_split_right = 1
 
 command CopyPath :!echo -n % | pbcopy
+
+" http://stackoverflow.com/questions/12091497/how-to-get-notified-when-file-is-changed-by-another-application
+autocmd CursorMoved,CursorMovedI * checktime
+autocmd FileChangedShell * set statusline^=CHANGED!!!\ 
