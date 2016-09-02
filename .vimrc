@@ -158,6 +158,7 @@ autocmd FileType ruby set foldexpr=RubyMethodFold(v:lnum)
 autocmd FileType ruby set foldmethod=expr
 
 autocmd BufRead,BufNewFile *.jbuilder set ft=ruby
+autocmd BufRead,BufNewFile *.zsh-theme set ft=zsh
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
