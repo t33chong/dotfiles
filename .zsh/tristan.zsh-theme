@@ -1,15 +1,3 @@
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}$%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}$%{$reset_color%}"
-
-git_custom_status() {
-  local cb=$(git_current_branch)
-  if [ -n "$cb" ]; then
-    echo "$(parse_git_dirty)"
-  else
-    echo "$%{$reset_color%}"
-  fi
-}
-
 get_pwd() {
   git_root=$PWD
   while [[ $git_root != / && ! -e $git_root/.git ]]; do
@@ -25,4 +13,14 @@ get_pwd() {
   echo $prompt_short_dir
 }
 
-PROMPT='%B%{$fg[cyan]%}$(get_pwd)% $(git_custom_status)%b '
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
+
+git_repo_color() {
+  local cb=$(git_current_branch)
+  if [ -n "$cb" ]; then
+    echo "$(parse_git_dirty)"
+  fi
+}
+
+PROMPT='%B%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%}$%b '
