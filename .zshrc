@@ -51,7 +51,7 @@ ZSH_CUSTOM=$HOME/.zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(fasd git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,7 +85,6 @@ unsetopt share_history
 export GOPATH=$HOME/Code/golang
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
 
-alias v="vim"
 alias vi="vim"
 alias vbi="vim -c 'BundleInstall'"
 alias py="python"
