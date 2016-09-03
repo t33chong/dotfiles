@@ -136,48 +136,48 @@ alias zk="sudo /opt/zookeeper/bin/zkServer.sh"
 
 # TODO: git add last argument of previous command
 
-function gsa {
+gsa() {
   git stash apply stash@{${1:-0}}
 }
 
 # git diff between current and n versions ago
-function gsw {
+gsw() {
   local offset=${2:-0}
   local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
   vim -c "Gvdiff $commit" $1
 }
 
-function up {
+up() {
   cd $(repeat ${1:-1} printf '../')
 }
 
-function vcr {
+vcr() {
   vim -c "CodeReview $1"
 }
 
-function kstg {
+kstg() {
   bundle exec knife $@ -c ~/.chef/stg/knife.rb
 }
 
-function kprod {
+kprod() {
   bundle exec knife $@ -c ~/.chef/prod/knife.rb
 }
 
 export MARKPATH=$HOME/.marks
-function to {
+to() {
   cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
 }
-function mark { 
+mark() {
   mkdir -p $MARKPATH; ln -s $(pwd) $MARKPATH/$1
 }
-function unmark { 
+unmark() {
   rm -i $MARKPATH/$1
 }
-function marks {
+marks() {
   ls -l $MARKPATH | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 
-function extract()      # Handy Extract Program
+extract()      # Handy Extract Program
 {
     if [ -f $1 ] ; then
         case $1 in
@@ -199,14 +199,15 @@ function extract()      # Handy Extract Program
     fi
 }
 
-function rm_recursive {
+rm_recursive() {
   find . -type f -name "$1" -delete
 }
 
-function dockerpls {
+dockerpls() {
   eval $(docker-machine env default)
 }
 
+# Place cursor at beginning of line in vicmd mode
 up-and-beginning() {
   zle up-history
   zle beginning-of-line
@@ -226,5 +227,6 @@ fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey -r '\ec' # Unbind fzf-cd-widget
 
 eval "$(fasd --init auto)"
