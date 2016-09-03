@@ -51,6 +51,7 @@ ZSH_CUSTOM=$HOME/.zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+eval "$(hub alias -s)"
 plugins=(fasd git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
@@ -220,6 +221,9 @@ zle -N up-and-beginning
 zle -N down-and-beginning
 
 bindkey '\e.' insert-last-word
+
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
