@@ -225,5 +225,3 @@ bindkey '\e.' insert-last-word
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(fasd --init auto)"
-
-archey -c
