@@ -51,7 +51,7 @@ ZSH_CUSTOM=$HOME/.zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search vi-mode)
+plugins=(git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,6 +79,8 @@ export EDITOR=vim
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+unsetopt share_history
 
 export GOPATH=$HOME/Code/golang
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
@@ -135,15 +137,15 @@ alias zk="sudo /opt/zookeeper/bin/zkServer.sh"
 # TODO: git add last argument of previous command
 
 function gsa {
-  git stash apply stash@{${1-0}}
+  git stash apply stash@{${1:-0}}
 }
 
-# TODO: git diff between current and n versions ago
-# function gsw {
-#   local offset=${2:-0}
-#   local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
-#   git show $commit:./$1 | vim - "+set filetype=${1##*.}";
-# }
+# git diff between current and n versions ago
+function gsw {
+  local offset=${2:-0}
+  local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
+  vim -c "Gvdiff $commit" $1
+}
 
 function up {
   cd $(repeat ${1:-1} printf '../')
