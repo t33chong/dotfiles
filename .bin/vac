@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+from subprocess import call
+from sys import argv
+
+optional = ' '.join(filter(lambda x: x.startswith('--'), argv[1:]))
+positional = filter(lambda x: not x.startswith('--'), argv[1:])
+
+pattern = "'%s'" % positional[0]
+directory = '.'
+if len(positional) > 1:
+    directory = positional[1]
+
+args = filter(lambda x: x, [optional, pattern, directory])
+command = 'vim -n -c "setlocal shellpipe=>" -c "Ack %s"' % ' '.join(args)
+call(command, shell=True)
