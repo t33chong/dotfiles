@@ -154,7 +154,7 @@ up() {
 }
 
 vail() {
-  vim -c "Tail $1" -c "only"
+  vim -c "Tail $1" -c "only" -c "setlocal wrap"
 }
 
 vcr() {
