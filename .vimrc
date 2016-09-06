@@ -36,6 +36,7 @@ Bundle 'junegunn/fzf.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'junkblocker/patchreview-vim'
 Bundle 'codegram/vim-codereview'
+Bundle 'vim-scripts/Tail-Bundle'
 Bundle 'mkitt/tabline.vim'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
@@ -224,7 +225,7 @@ function! AdjustWindowHeight(minheight, maxheight)
 endfunction
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:ack_autoclose = 1
+" let g:ack_autoclose = 1
 let g:ackhighlight = 1
 let g:ackpreview = 1
 
