@@ -19,9 +19,13 @@ Bundle 'tmux-plugins/vim-tmux-focus-events'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
+Bundle 'junegunn/gv.vim'
+" Bundle 'christoomey/vim-conflicted'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'Valloric/ListToggle'
+Bundle 'ronakg/quickr-preview.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'michaeljsmith/vim-indent-object'
@@ -37,6 +41,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'junkblocker/patchreview-vim'
 Bundle 'codegram/vim-codereview'
 Bundle 'vim-scripts/Tail-Bundle'
+Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'mkitt/tabline.vim'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
@@ -93,6 +98,8 @@ set directory=$HOME/.vim/swap//
 
 set clipboard=unnamed
 
+set diffopt+=vertical
+
 set updatetime=250
 " set timeoutlen=1000 ttimeoutlen=10
 " set esckeys
@@ -128,6 +135,7 @@ set statusline+=\ %#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline^=%{StatuslineBranch()}
+" set statusline^=%{ConflictedVersion()}
 
 " This eliminates the hit-enter prompt caused by a long swap file path
 set cmdheight=3
@@ -171,8 +179,8 @@ let g:syntastic_mode_map = {
     \ "active_filetypes": [],
     \ "passive_filetypes": [] }
 
-nnoremap <leader>l :SyntasticCheck<CR>
-nnoremap <leader>L :SyntasticToggle<CR>
+nnoremap <leader>c :SyntasticCheck<CR>
+nnoremap <leader>C :SyntasticToggle<CR>
 
 function! SetTagbarWidth()
   let g:tagbar_width = winwidth('%') - 87
@@ -264,15 +272,21 @@ inoremap <expr> <S-Tab> delimitMate#ShouldJump() ?
       \ "\<C-R>=delimitMate#JumpMany()<CR>" :
       \ "\<C-d>"
 
+au BufNewFile,BufRead *.html set filetype=html.mustache syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 let g:mustache_abbreviations = 1
 let g:vim_json_syntax_conceal = 0
+
+au FileType git,gitcommit set textwidth=72 colorcolumn=72
 
 nnoremap <leader>ga :Gwrite<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gd :Gvdiff<CR>
-command Greview :Git! diff --staged
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gh :setlocal shellpipe=><CR>:Glog<CR><CR><CR>:copen<CR>:wincmd k<CR>:Gedit<CR>:wincmd j<CR>:echo "Space: open split / q: quit"<CR>
+nnoremap <leader>gl :GV<CR>
 nnoremap <leader>go :Gread<CR>
+command Greview :Git! diff --staged
 nnoremap <leader>gr :Greview<CR>
 nnoremap <leader>gs :Gstatus<CR>
 
@@ -295,12 +309,20 @@ hi StatusLineNC ctermbg=240 ctermfg=white
 "   autocmd WinLeave * hi StatusLine ctermbg=white
 " augroup END
 
+let g:quickr_preview_keymaps = 0
+autocmd FileType qf nmap <Space> <Plug>(quickr_preview)
+autocmd FileType qf nmap q <Plug>(quickr_preview_qf_close)
+
 nnoremap <C-x> <C-w>c
 nnoremap <silent> <leader><Tab> :NERDTreeToggle<CR>
 nnoremap <silent> <leader><Space> :FZF<CR>
 
 nnoremap <leader>d :vsplit<CR>
 nnoremap <leader>D :split<CR>
+
+" au FileType conflict nmap <leader>dt :diffget //2<CR>n
+" au FileType conflict nmap <leader>dm :diffget //3<CR>n
+" au FileType conflict nmap <leader>x :Gwrite<CR>:qa<CR>
 
 set rtp+=/usr/local/opt/fzf
 
@@ -316,3 +338,47 @@ command CopyPath :!echo -n % | pbcopy
 " http://stackoverflow.com/questions/12091497/how-to-get-notified-when-file-is-changed-by-another-application
 autocmd CursorMoved,CursorMovedI * checktime
 autocmd FileChangedShell * set statusline^=CHANGED!!!\ 
+
+" Use `gl` and `gu` rather than the default conflicted diffget mappings
+let g:diffget_local_map = 'gl'
+let g:diffget_upstream_map = 'gu'
+
+function! DiffGet(window)
+  execute "diffget //" . a:window
+  execute "diffupdate"
+  " call NextMergeConflict()
+endfunction
+
+" function! NextMergeConflict()
+"   normal n
+"   if v:warningmsg =~ "^search hit BOTTOM, continuing at TOP"
+"     let v:warningmsg = ""
+"     call NextQuickFix()
+"   endif
+" endfunction
+
+function! NextMergeConflict()
+  try
+    normal n
+  catch /E486/
+    silent! call NextQuickfix()
+  endtry
+endfunction
+
+function! NextQuickfix()
+  execute "Gwrite"
+  try
+    " normal ]q
+    execute "cnext"
+    if winnr("$") < 3
+      execute "Gdiff"
+    endif
+  catch /E553/
+    execute "qa"
+  endtry
+endfunction
+
+" http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

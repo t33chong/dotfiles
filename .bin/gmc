@@ -12,23 +12,29 @@ def conflicted_files():
 
 # Write vimrc function that uses current qf index compared to len(getqflist()) (represents total # of qf windows); if last qf window, command should quit vim, otherwise move to next qf window
 # Modify below to open vim and run Gmerge, then Gdiff on each file
-vim_commands = [
+commands = [
+    'Gmerge',
     'Gdiff',
-    "set nohlsearch",
+    'set nohlsearch',
     "let @/='<<<<<<<'",
-    "set hlsearch",
-    "nmap <leader>dt :diffget //2<CR>n",
-    "nmap <leader>dm :diffget //3<CR>n",
-    "nmap <leader>x :Gwrite<CR>:qa<CR>",
-    "normal ggn"
+    'set hlsearch',
+    'nmap <leader>dt :call DiffGet(2)<CR>',
+    'nmap <leader>dm :call DiffGet(3)<CR>',
+    'nmap <leader>n :call NextMergeConflict()<CR>',
+    'normal ggn'
+    # TODO: change `n` to :NextMergeConflict()<CR>
+    # "nmap <leader>dt :diffget //2<CR>n",
+    # "nmap <leader>dm :diffget //3<CR>n",
+    # "nmap <leader>x :Gwrite<CR>:qa<CR>",
     ]
-vim_arguments = ' '.join(map(lambda x: '-c "%s"' % x, vim_commands))
+arguments = ' '.join(map(lambda x: '-c "%s"' % x, commands))
+# print 'vim %s' % arguments
+# exit(0)
 
-files = conflicted_files()
-while files:
-    for filename in files:
-        vim = call('vim %s %s' % (vim_arguments, filename), shell=True)
-        if vim:
-            exit(1)
+while True:
+    if not conflicted_files():
+        break
+    vim = call('vim %s .' % arguments, shell=True)
+    if vim:
+        exit(1)
     call('EDITOR=cat git rebase --continue', shell=True)
-    files = conflicted_files()
