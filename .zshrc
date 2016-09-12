@@ -87,7 +87,7 @@ export GOPATH=$HOME/Code/golang
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
 
 alias vi="vim"
-alias vbi="vim -c 'BundleInstall'"
+alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
 alias py="python"
 alias py3="python3"
 alias venv=". .env/bin/activate"
@@ -154,7 +154,7 @@ up() {
 }
 
 vail() {
-  vim -c "Tail $1" -c "only" -c "setlocal wrap"
+  vim -c "Tail $1" -c "only" -c "setlocal wrap" -c "AnsiEsc" -c "nnoremap <leader>r :call tail#Refresh()<CR>:AnsiEsc<CR>"
 }
 
 vcr() {

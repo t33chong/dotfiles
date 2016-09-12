@@ -20,7 +20,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'junegunn/gv.vim'
-" Bundle 'christoomey/vim-conflicted'
+Bundle 'tristaneuan/conflict-marker.vim'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
@@ -298,17 +298,6 @@ nnoremap <silent> <C-l> :wincmd l<cr>
 hi StatusLine ctermbg=white ctermfg=black
 hi StatusLineNC ctermbg=240 ctermfg=white
 
-" augroup StatusHighlight
-"   autocmd!
-"   autocmd WinEnter *
-"         \ if winnr('$') > 1 |
-"         \   hi StatusLine ctermbg=yellow |
-"         \ else |
-"         \   hi StatusLine ctermbg=white |
-"         \ endif
-"   autocmd WinLeave * hi StatusLine ctermbg=white
-" augroup END
-
 let g:quickr_preview_keymaps = 0
 autocmd FileType qf nmap <Space> <Plug>(quickr_preview)
 autocmd FileType qf nmap q <Plug>(quickr_preview_qf_close)
@@ -319,10 +308,6 @@ nnoremap <silent> <leader><Space> :FZF<CR>
 
 nnoremap <leader>d :vsplit<CR>
 nnoremap <leader>D :split<CR>
-
-" au FileType conflict nmap <leader>dt :diffget //2<CR>n
-" au FileType conflict nmap <leader>dm :diffget //3<CR>n
-" au FileType conflict nmap <leader>x :Gwrite<CR>:qa<CR>
 
 set rtp+=/usr/local/opt/fzf
 
@@ -343,24 +328,10 @@ autocmd FileChangedShell * set statusline^=CHANGED!!!\
 let g:diffget_local_map = 'gl'
 let g:diffget_upstream_map = 'gu'
 
-function! DiffGet(window)
-  execute "diffget //" . a:window
-  execute "diffupdate"
-  " call NextMergeConflict()
-endfunction
-
-" function! NextMergeConflict()
-"   normal n
-"   if v:warningmsg =~ "^search hit BOTTOM, continuing at TOP"
-"     let v:warningmsg = ""
-"     call NextQuickFix()
-"   endif
-" endfunction
-
 function! NextMergeConflict()
   try
-    normal n
-  catch /E486/
+    execute "ConflictMarkerNextHunk"
+  catch /conflict not found/
     silent! call NextQuickfix()
   endtry
 endfunction
@@ -373,6 +344,7 @@ function! NextQuickfix()
     if winnr("$") < 3
       execute "Gdiff"
     endif
+    execute "set noro"
   catch /E553/
     execute "qa"
   endtry

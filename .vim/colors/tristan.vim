@@ -1,6 +1,5 @@
-" Vim color file -- candycode
-" Maintainer:   Justin Constantino <goflyapig-at-gmail-com>
-" Last Change:  2006 Aug 12
+" Vim color file -- tristan
+" Based on candycode by Justin Constantino
 
 set background=dark
 highlight clear
@@ -48,6 +47,18 @@ hi DiffText     guifg=#ffffff       guibg=#976398       gui=bold
             \   ctermfg=black       ctermbg=green       cterm=bold
 
 " }}}
+
+" git-specific {{{
+hi gitKeyword ctermfg=cyan
+hi def link gitIdentityKeyword gitKeyword
+hi gitHash ctermfg=yellow
+hi diffFile ctermfg=yellow
+hi diffLine ctermfg=cyan
+hi diffSubname ctermfg=white
+hi diffAdded ctermfg=green
+hi diffRemoved ctermfg=red
+" }}}
+
 " borders / separators / menus {{{
 
 hi FoldColumn   guifg=#c8bcb9       guibg=#786d65       gui=bold            
