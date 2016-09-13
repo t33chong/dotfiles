@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'wordnik'
+
+config = File.join(Dir.home, '.wordnik')
+abort("Configuration file not found: #{config}") unless File.exists?(config)
+api_key = File.open(config).read.strip
+
+options = { thesaurus: false }
+OptionParser.new do |opts|
+  opts.on('-t', '--thesaurus', 'Look up synonyms') do |t|
+    options[:thesaurus] = true
+  end
+end.parse!
+
+query = ARGV.join(' ')
+
+Wordnik.configure do |config|
+  config.api_key = api_key
+  config.logger = Logger.new('/dev/null')
+end
+
+if options[:thesaurus]
+  puts Wordnik.word.get_related(query, type: 'synonym').first['words'].join(', ')
+else
+  puts Wordnik.word.get_definitions(query, limit: 3).map { |d| d['text'] }.join("\n")
+end
