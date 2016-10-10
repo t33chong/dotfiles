@@ -81,11 +81,15 @@ export EDITOR=vim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+KEYTIMEOUT=1
+
+setopt ignoreeof
 unsetopt share_history
 
 export GOPATH=$HOME/Code/golang
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
 
+alias sz="source $HOME/.zshrc"
 alias vi="vim"
 alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
 alias py="python"
@@ -130,6 +134,7 @@ alias gss="git stash save"
 alias tm="TERM=xterm-256color tmux attach"
 alias pls='sudo zsh -c "$(fc -nl -1)"'
 alias vag="vac"
+alias dfi="docker run -v /var/run/docker.sock:/var/run/docker.sock dduvnjak/dockerfile-from-image"
 
 alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l logfile start"
@@ -160,6 +165,10 @@ vail() {
 vcr() {
   vim -c "CodeReview $1"
 }
+
+# vfi() {
+#   vim -p $(find . -type f -name ''\''$1'\'' | tr "\n" " ")
+# }
 
 kstg() {
   bundle exec knife $@ -c ~/.chef/stg/knife.rb
@@ -236,3 +245,6 @@ autoload -U compinit && compinit
 bindkey -r '\ec' # Unbind fzf-cd-widget
 
 eval "$(fasd --init auto)"
+
+alias d="docker"
+alias e="ember"
