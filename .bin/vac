@@ -3,8 +3,8 @@
 from subprocess import call
 from sys import argv
 
-optional = ' '.join(filter(lambda x: x.startswith('--'), argv[1:]))
-positional = filter(lambda x: not x.startswith('--'), argv[1:])
+optional = ' '.join(filter(lambda x: x.startswith('-'), argv[1:]))
+positional = filter(lambda x: not x.startswith('-'), argv[1:])
 
 pattern = "'%s'" % positional[0]
 directory = '.'
