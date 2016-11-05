@@ -4,3 +4,4 @@ set keyseq-timeout 0
 set show-mode-in-prompt on
 set vi-cmd-mode-string "^"
 set vi-ins-mode-string "+"
+set blink-matching-paren on
