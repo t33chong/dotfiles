@@ -81,7 +81,7 @@ export EDITOR=vim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-KEYTIMEOUT=1
+KEYTIMEOUT=15 # Raised from 1 because `bindkey '\e.'` wasn't working
 
 setopt ignoreeof
 unsetopt share_history
@@ -166,9 +166,9 @@ vcr() {
   vim -c "CodeReview $1"
 }
 
-# vfi() {
-#   vim -p $(find . -type f -name ''\''$1'\'' | tr "\n" " ")
-# }
+vfi() {
+  vim -p $(find . -type f -name $1 | tr "\n" " ")
+}
 
 kstg() {
   bundle exec knife $@ -c ~/.chef/stg/knife.rb
