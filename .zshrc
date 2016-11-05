@@ -52,7 +52,7 @@ ZSH_CUSTOM=$HOME/.zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 eval "$(hub alias -s)"
-plugins=(fasd git vi-mode)
+plugins=(fasd git vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
