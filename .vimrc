@@ -119,7 +119,7 @@ set ls=2
 set ruler
 
 set pastetoggle=<F6>
-let mapleader=";"
+let mapleader="\<Space>"
 
 map <Leader> <Plug>(easymotion-prefix)
 
@@ -166,6 +166,7 @@ endfunction
 autocmd FileType ruby set foldexpr=RubyMethodFold(v:lnum)
 autocmd FileType ruby set foldmethod=expr
 
+autocmd BufRead,BufNewFile *.sbt set ft=scala
 autocmd BufRead,BufNewFile *.jbuilder set ft=ruby
 autocmd BufRead,BufNewFile *.zsh-theme set ft=zsh
 
@@ -271,6 +272,7 @@ inoremap <expr> <Tab> delimitMate#ShouldJump() ?
 inoremap <expr> <S-Tab> delimitMate#ShouldJump() ?
       \ "\<C-R>=delimitMate#JumpMany()<CR>" :
       \ "\<C-d>"
+inoremap <NUL> <Tab>
 
 au BufNewFile,BufRead *.html set filetype=html.mustache syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 let g:mustache_abbreviations = 1
@@ -299,7 +301,7 @@ hi StatusLine ctermbg=white ctermfg=black
 hi StatusLineNC ctermbg=240 ctermfg=white
 
 let g:quickr_preview_keymaps = 0
-autocmd FileType qf nmap <Space> <Plug>(quickr_preview)
+autocmd FileType qf nmap <Tab> <Plug>(quickr_preview)
 autocmd FileType qf nmap q <Plug>(quickr_preview_qf_close)
 
 nnoremap <C-x> <C-w>c
