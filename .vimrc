@@ -291,6 +291,8 @@ nnoremap <leader>go :Gread<CR>
 command Greview :Git! diff --staged
 nnoremap <leader>gr :Greview<CR>
 nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gy :Gbrowse!<CR>
+vnoremap <leader>gy :Gbrowse!<CR>
 
 nnoremap <silent> <C-h> :wincmd h<cr>
 nnoremap <silent> <C-j> :wincmd j<cr>
