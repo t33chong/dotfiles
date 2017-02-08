@@ -29,6 +29,7 @@ Bundle 'ronakg/quickr-preview.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'jeetsukumaran/vim-indentwise'
 Bundle 'mattn/emmet-vim'
 Bundle 'AndrewRadev/splitjoin.vim'
 " Bundle 'terryma/vim-multiple-cursors'
@@ -42,6 +43,7 @@ Bundle 'junkblocker/patchreview-vim'
 Bundle 'codegram/vim-codereview'
 Bundle 'vim-scripts/Tail-Bundle'
 Bundle 'vim-scripts/AnsiEsc.vim'
+Bundle 'suan/vim-instant-markdown'
 Bundle 'mkitt/tabline.vim'
 Bundle 'justone/remotecopy', {'rtp': 'vim/'}
 Bundle 'vim-scripts/matchit.zip'
@@ -50,11 +52,15 @@ Bundle 'majutsushi/tagbar'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kana/vim-textobj-user'
 Bundle 'tpope/vim-endwise'
+Bundle 'luochen1990/rainbow'
+Bundle 'bkad/CamelCaseMotion'
 Bundle 'elzr/vim-json'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'fatih/vim-go'
-Bundle 'pangloss/vim-javascript'
+Bundle 'jelera/vim-javascript-syntax'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'mattboehm/vim-unstack'
+" Bundle 'Valloric/YouCompleteMe'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -122,6 +128,14 @@ set pastetoggle=<F6>
 let mapleader="\<Space>"
 
 map <Leader> <Plug>(easymotion-prefix)
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+nmap ; <Plug>(easymotion-bd-f)
+vmap ; <Plug>(easymotion-bd-f)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+call camelcasemotion#CreateMotionMappings('<leader>')
 
 function! StatuslineBranch()
   if strlen(fugitive#head()) > 0
@@ -170,9 +184,20 @@ autocmd BufRead,BufNewFile *.sbt set ft=scala
 autocmd BufRead,BufNewFile *.jbuilder set ft=ruby
 autocmd BufRead,BufNewFile *.zsh-theme set ft=zsh
 
+let g:rainbow_active = 0
+let g:rainbow_conf = {
+\ 'ctermfgs': [245, 196, 214, 226, 118, 123, 21, 93]
+\ }
+" \ 'ctermfgs': ['white', 'red', 'yellow', 'green', 'cyan', 'blue', 'magenta', 'gray']
+" \ 'ctermfgs': ['white', 'cyan', 'yellow', 'green', 'blue']
+" \ 'ctermfgs': ['white', 'lightgray', 'darkgray', 'lightgray']
+" \ 'ctermfgs': [159, 156, 229, 225]
+" \ 'ctermfgs': [255, 250, 245, 240] " THIS ONE
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_html_checkers=['']
+let g:syntastic_json_checkers=['jsonlint']
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_ruby_checkers=['rubocop']
 let g:syntastic_mode_map = {
@@ -188,52 +213,27 @@ function! SetTagbarWidth()
 endfunction
 nnoremap <silent> <leader>t :call SetTagbarWidth()<CR>:TagbarToggle<CR>
 
-" Jump to the next or previous line that has the same level or a lower
-" level of indentation than the current line.
-"
-" exclusive (bool): true: Motion is exclusive
-" false: Motion is inclusive
-" fwd (bool): true: Go to next line
-" false: Go to previous line
-" lowerlevel (bool): true: Go to line with lower indentation level
-" false: Go to line with the same indentation level
-" skipblanks (bool): true: Skip blank lines
-" false: Don't skip blank lines
-function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
-  let line = line('.')
-  let column = col('.')
-  let lastline = line('$')
-  let indent = indent(line)
-  let stepvalue = a:fwd ? 1 : -1
-  while (line > 0 && line <= lastline)
-    let line = line + stepvalue
-    if ( ! a:lowerlevel && indent(line) == indent ||
-          \ a:lowerlevel && indent(line) < indent)
-      if (! a:skipblanks || strlen(getline(line)) > 0)
-        if (a:exclusive)
-          let line = line - stepvalue
-        endif
-        exe line
-        exe "normal " column . "|"
-        return
-      endif
-    endif
-  endwhile
-endfunction
+" map [[ <Plug>(IndentWisePreviousEqualIndent)
+" map ]] <Plug>(IndentWiseNextEqualIndent)
 
-" nnoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
-" nnoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
-" vnoremap <silent> [i <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
-" vnoremap <silent> ]i <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
-" onoremap <silent> [i :call NextIndent(0, 0, 0, 1)<CR>
-" onoremap <silent> ]i :call NextIndent(0, 1, 0, 1)<CR>
+" nunmap <expr> [[
+" nunmap <expr> ]]
+" xunmap <expr> [[
+" xunmap <expr> ]]
+map [< <Plug>(IndentWisePreviousLesserIndent)
+map [[ <Plug>(IndentWisePreviousEqualIndent)
+map [> <Plug>(IndentWisePreviousGreaterIndent)
+map ]< <Plug>(IndentWiseNextLesserIndent)
+map ]] <Plug>(IndentWiseNextEqualIndent)
+map ]> <Plug>(IndentWiseNextGreaterIndent)
 
 au FileType qf call AdjustWindowHeight(1, 20)
 function! AdjustWindowHeight(minheight, maxheight)
   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --path-to-ignore ~/.agignore --nogroup --nocolor --column'
 " let g:ack_autoclose = 1
 let g:ackhighlight = 1
 let g:ackpreview = 1
@@ -262,17 +262,58 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
 
 noremap <leader>p :YRShow<CR>
 
+inoremap <S-tab> <C-d>
+
+" http://ivanbrennan.nyc/blog/2014/10/26/vim-key-mappings/
+" Shift-Enter
+set  <F13>=[25~
+map  <F13> <S-CR>
+map! <F13> <S-CR>
+
+" Alt-/
+set  <F14>=[27~
+map  <F14> <M-/>
+map! <F14> <M-/>
+
+" Alt-\
+set  <F15>=[29~
+map  <F15> <M-\>
+map! <F15> <M-\>
+
+" Alt-Esc
+set  <F16>=[30~
+map  <F16> <M-ESC>
+map! <F16> <M-ESC>
+
+" Ctrl-Enter
+set  <F17>=[31~
+map  <F17> <C-CR>
+map! <F17> <C-CR>
+
+noremap <silent> <M-ESC> :only<CR>
+
 let delimitMate_expand_cr = 1
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 
+" inoremap <expr> <S-CR> delimitMate#JumpAny()
+" inoremap <expr> <C-CR> delimitMate#JumpMany()
+
 inoremap <expr> <Tab> delimitMate#ShouldJump() ?
       \ "\<C-R>=delimitMate#JumpAny()<CR>" :
       \ "\<Tab>"
-inoremap <expr> <S-Tab> delimitMate#ShouldJump() ?
-      \ "\<C-R>=delimitMate#JumpMany()<CR>" :
-      \ "\<C-d>"
+inoremap <expr> <S-CR> delimitMate#JumpMany()
 inoremap <NUL> <Tab>
+
+" inoremap <expr> <F14> delimitMate#ShouldJump() ?
+"       \ "\<C-R>=delimitMate#JumpMany()<CR>" :
+"       \ "\<C-d>"
+
+" ctags
+" nnoremap <M-/> <C-w>}
+" nnoremap <M-/> <C-w>s<C-]>
+nnoremap <silent> <M-/> :set noswf<CR><C-w>s<C-]>:set swf<CR>
+nnoremap <silent> <M-\> :q<CR>
 
 au BufNewFile,BufRead *.html set filetype=html.mustache syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 let g:mustache_abbreviations = 1
@@ -310,8 +351,8 @@ nnoremap <C-x> <C-w>c
 nnoremap <silent> <leader><Tab> :NERDTreeToggle<CR>
 nnoremap <silent> <leader><Space> :FZF<CR>
 
-nnoremap <leader>d :vsplit<CR>
-nnoremap <leader>D :split<CR>
+" http://vim.wikia.com/wiki/Selecting_your_pasted_text
+nnoremap <expr> <leader>v '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 set rtp+=/usr/local/opt/fzf
 
@@ -353,6 +394,10 @@ function! NextQuickfix()
     execute "qa"
   endtry
 endfunction
+
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_slow = 1
+autocmd FileType markdown nnoremap <leader>md :InstantMarkdownPreview<CR>
 
 " http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
