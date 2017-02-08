@@ -1,3 +1,6 @@
+export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -52,7 +55,8 @@ ZSH_CUSTOM=$HOME/.zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 eval "$(hub alias -s)"
-plugins=(fasd git vi-mode zsh-syntax-highlighting)
+# eval "$(thefuck --alias fak)"
+plugins=(docker fasd git vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,10 +100,12 @@ alias py="python"
 alias py3="python3"
 alias venv=". .env/bin/activate"
 alias ir="irb --simple-prompt"
-alias bi="bundle install"
+# alias bi="bundle install --path .bundle"
 alias be="bundle exec"
 alias bu="bundle update"
 alias brake="bundle exec rake"
+alias brk="bundle exec rake"
+alias brl="bundle exec rails"
 alias dc="docker-compose"
 alias gad="git add"
 alias grm="git rm"
@@ -110,9 +116,10 @@ alias gco="git checkout"
 alias gct="git commit"
 alias gci="git commit -m"
 alias gs="git status -sb"
-alias gst="git status -sb"
+alias gst="git status"
 alias gbr="git branch"
 alias ggr="git grep -n"
+alias gl="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias gpl="git pull"
 alias gps="git push"
@@ -131,15 +138,27 @@ alias gshl="git stash list --format='%gd [%cr] %gs'"
 alias gsl="git stash list --format='%gd [%cr] %gs'"
 alias gshs="git stash save"
 alias gss="git stash save"
-alias tm="TERM=xterm-256color tmux attach"
+alias gwho="git shortlog -sn"
+alias lt="ls -lt"
+alias caf="caffeinate -is"
+# alias tm="TERM=xterm-256color tmux attach"
+alias tm="tmux -2 attach"
 alias pls='sudo zsh -c "$(fc -nl -1)"'
-alias vag="vac"
+alias k='zsh -c "$(fc -nl -1)"'
 alias dfi="docker run -v /var/run/docker.sock:/var/run/docker.sock dduvnjak/dockerfile-from-image"
 
 alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l logfile start"
-alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
+# alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
+alias wtest="bundle exec testrbl -I test"
 alias zk="sudo /opt/zookeeper/bin/zkServer.sh"
+
+bi() {
+  if [ -f .path ] ; then
+    source .path
+  fi
+  bundle install --path .bundle
+}
 
 # TODO: git add last argument of previous command
 
@@ -167,14 +186,15 @@ vcr() {
 }
 
 vfi() {
-  vim -p $(find . -type f -name $1 | tr "\n" " ")
+  # vim -p $(find . -type f -name $1 | tr "\n" " ")
+  vim -p $(find ${2:-.} -type f -name $1 | tr "\n" " ")
 }
 
-kstg() {
+ks() {
   bundle exec knife $@ -c ~/.chef/stg/knife.rb
 }
 
-kprod() {
+kp() {
   bundle exec knife $@ -c ~/.chef/prod/knife.rb
 }
 
@@ -222,6 +242,18 @@ dockerpls() {
   eval $(docker-machine env default)
 }
 
+dr() {
+  docker run -it $1 /bin/bash
+}
+
+dx() {
+  docker exec -it $1 /bin/bash
+}
+
+# y2j() {
+#   python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' $1 > $2
+# }
+
 # Place cursor at beginning of line in vicmd mode
 up-and-beginning() {
   zle up-history
@@ -246,5 +278,7 @@ bindkey -r '\ec' # Unbind fzf-cd-widget
 
 eval "$(fasd --init auto)"
 
+alias b="bundle"
 alias d="docker"
 alias e="ember"
+alias r="rails"
