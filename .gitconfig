@@ -1,16 +1,20 @@
 [user]
-    name = Tristan Chong
-    email = tristanchong@gmail.com
+  name = Tristan Chong
+  email = tristanchong@gmail.com
 [core]
-    autocrlf = input
-    safecrlf = true
+  autocrlf = input
+  safecrlf = true
 [push]
-    default = current
+  default = current
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    br = branch
-    lg = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-    type = cat-file -t
-    dump = cat-file -p
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  lg = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+[github]
+	user = tristaneuan
+[init]
+	templatedir = ~/.git-templates
