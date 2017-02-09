@@ -23,7 +23,24 @@ git_repo_color() {
   fi
 }
 
+git_branch_formatted() {
+  local cb=$(git_current_branch)
+  if [ -n "$cb" ]; then
+    if [[ $cb = "master" ]]; then
+      echo ""
+    else
+      # echo " %{$fg[cyan]%}$(vi_mode_prompt_info)@$(git_repo_color) $cb"
+      # echo " %{$fg[grey]%}@$(git_repo_color) $cb"
+      echo "%{$fg[grey]%}($(git_repo_color)$cb%{$fg[grey]%}) "
+    fi
+  else
+    echo ""
+  fi
+}
+
 MODE_INDICATOR="%{$fg[yellow]%}"
 
-PROMPT='%B%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%} $(vi_mode_prompt_info)$%b %{$reset_color%}'
+# PROMPT='%B%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%} $(vi_mode_prompt_info)$%b %{$reset_color%}'
+# PROMPT='%B%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% $(git_branch_formatted)%{$fg[cyan]%} $(vi_mode_prompt_info)$%b %{$reset_color%}'
+PROMPT='%B$(git_branch_formatted)%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%} $(vi_mode_prompt_info)$%b %{$reset_color%}'
 RPROMPT=""
