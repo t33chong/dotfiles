@@ -29,7 +29,7 @@ git_branch_formatted() {
     if [[ $cb = "master" ]]; then
       echo ""
     else
-      echo "%{$fg[grey]%}($(git_repo_color)$cb%{$fg[grey]%}) "
+      echo "%{$fg[grey]%}[$(git_repo_color)$cb%{$fg[grey]%}] "
     fi
   else
     echo ""
