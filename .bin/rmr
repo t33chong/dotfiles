@@ -1,0 +1,10 @@
+#!/bin/sh
+
+find $1 | less
+read -p "Are you sure you want to delete these files? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  rm -rf $1
+else
+  echo "Foolish mistake averted!"
+fi
