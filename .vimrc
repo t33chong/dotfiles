@@ -169,6 +169,7 @@ autocmd FileType python inoremap # X<C-h>#
 autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4
 autocmd FileType rb set ft=ruby
 autocmd FileType ruby set syntax=ruby
+autocmd FileType ruby let b:delimitMate_quotes = "\" ' ` |"
 autocmd BufRead,BufNewFile *.txt,*.md set linebreak
 
 function! RubyMethodFold(line)
@@ -262,6 +263,9 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
 
 noremap <leader>p :YRShow<CR>
 
+nnoremap , :
+vnoremap , :
+
 inoremap <S-tab> <C-d>
 
 " http://ivanbrennan.nyc/blog/2014/10/26/vim-key-mappings/
@@ -275,7 +279,7 @@ set  <F14>=[27~
 map  <F14> <M-/>
 map! <F14> <M-/>
 
-" Alt-\
+" Alt-Shift-;
 set  <F15>=[29~
 map  <F15> <M-\>
 map! <F15> <M-\>
@@ -289,6 +293,21 @@ map! <F16> <M-ESC>
 set  <F17>=[31~
 map  <F17> <C-CR>
 map! <F17> <C-CR>
+
+" Alt-,
+set  <F18>=[32~
+map  <F18> <M-,>
+map! <F18> <M-,>
+
+" Alt-Shift-,
+set  <F19>=[33~
+map  <F19> <M-`>
+map! <F19> <M-`>
+
+" Alt-;
+set  <F20>=[34~
+map  <F20> <M-;>
+map! <F20> <M-;>
 
 noremap <silent> <M-ESC> :only<CR>
 
@@ -305,6 +324,16 @@ inoremap <expr> <Tab> delimitMate#ShouldJump() ?
 inoremap <expr> <S-CR> delimitMate#JumpMany()
 inoremap <NUL> <Tab>
 
+inoremap <M-,> <ESC>A,
+inoremap <M-`> <ESC>jA,
+inoremap <M-;> <ESC>A;
+inoremap <M-\> <ESC>jA;
+
+nnoremap <M-,> <ESC>A,
+nnoremap <M-`> <ESC>jA,
+nnoremap <M-;> <ESC>A;
+nnoremap <M-\> <ESC>jA;
+
 " inoremap <expr> <F14> delimitMate#ShouldJump() ?
 "       \ "\<C-R>=delimitMate#JumpMany()<CR>" :
 "       \ "\<C-d>"
@@ -313,7 +342,6 @@ inoremap <NUL> <Tab>
 " nnoremap <M-/> <C-w>}
 " nnoremap <M-/> <C-w>s<C-]>
 nnoremap <silent> <M-/> :set noswf<CR><C-w>s<C-]>:set swf<CR>
-nnoremap <silent> <M-\> :q<CR>
 
 au BufNewFile,BufRead *.html set filetype=html.mustache syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
 let g:mustache_abbreviations = 1
@@ -403,3 +431,6 @@ autocmd FileType markdown nnoremap <leader>md :InstantMarkdownPreview<CR>
 map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" TODO: Why doesn't this work?
+nnoremap Y yg_
