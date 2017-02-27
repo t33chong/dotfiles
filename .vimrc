@@ -61,6 +61,7 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'mattboehm/vim-unstack'
 " Bundle 'Valloric/YouCompleteMe'
+Bundle 'b4b4r07/vim-hcl'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
