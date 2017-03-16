@@ -385,6 +385,13 @@ let delimitMate_jump_expansion = 1
 " inoremap <expr> <S-CR> delimitMate#JumpAny()
 " inoremap <expr> <C-CR> delimitMate#JumpMany()
 
+nnoremap J j<C-e>
+nnoremap K k<C-y>
+vnoremap J j<C-e>
+vnoremap K k<C-y>
+noremap <leader>J J
+noremap <leader>K K
+
 " tab = delimitmate#shouldjump /
 " s-tab = autocomplete forward
 " c-s-tab = autocomplete back
