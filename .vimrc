@@ -444,7 +444,7 @@ au FileType git,gitcommit set textwidth=72 colorcolumn=72
 
 nnoremap <leader>ga :Gwrite<CR>
 nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gc :Gcommit --verbose<CR>
 nnoremap <leader>gd :Gvdiff<CR>
 nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gh :setlocal shellpipe=><CR>:Glog<CR><CR><CR>:copen<CR>:wincmd k<CR>:Gedit<CR>:wincmd j<CR>:echo "Space: open split / q: quit"<CR>
