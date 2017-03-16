@@ -32,7 +32,7 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'jeetsukumaran/vim-indentwise'
 Bundle 'mattn/emmet-vim'
 Bundle 'AndrewRadev/splitjoin.vim'
-" Bundle 'terryma/vim-multiple-cursors'
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/YankRing.vim'
 Bundle 'raimondi/delimitmate'
 Bundle 'scrooloose/nerdtree'
@@ -62,6 +62,10 @@ Bundle 'mustache/vim-mustache-handlebars'
 Bundle 'mattboehm/vim-unstack'
 " Bundle 'Valloric/YouCompleteMe'
 Bundle 'b4b4r07/vim-hcl'
+" Bundle 'sunaku/vim-dasht'
+Bundle 'rizzatti/dash.vim'
+" Bundle 'yuratomo/w3m.vim'
+Bundle 'elixir-lang/vim-elixir'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -96,6 +100,7 @@ set nofoldenable
 
 set showcmd
 
+highlight ColorColumn ctermbg=235
 set colorcolumn=80
 
 set noeb vb t_vb=
@@ -310,6 +315,67 @@ set  <F20>=[34~
 map  <F20> <M-;>
 map! <F20> <M-;>
 
+" Ctrl-Dash
+set  <F21>=[1;5A
+map  <F21> <C-q>
+map! <F21> <C-q>
+
+" " https://www.reddit.com/r/vim/comments/4qaqg4/something_like_capslock_but_to_map_space_to_in/
+" inoremap <expr> <C-0> ToggleUnderscore()
+" let g:underscore_status = 0
+" function! ToggleUnderscore()
+"   if g:underscore_status
+"     iunmap <space>
+"     echo 'Underscore disabled'
+"   else
+"     inoremap <space> _
+"     echo 'Underscore enabled'
+"   endif
+"   let g:underscore_status = !g:underscore_status
+"   return ''
+" endfunction
+
+" " https://www.reddit.com/r/vim/comments/4qaqg4/something_like_capslock_but_to_map_space_to_in/
+" inoremap <expr> <C-u> ToggleUnderscore()
+" let g:underscore_status = 0
+" function! ToggleUnderscore()
+"   if g:underscore_status
+"     normal v'0
+"     execute "'<,'>s\/\ \/_\/g"
+"   else
+"     normal m0
+"   endif
+"   let g:underscore_status = !g:underscore_status
+" endfunction
+
+" " https://www.reddit.com/r/vim/comments/4qaqg4/something_like_capslock_but_to_map_space_to_in/
+" inoremap <expr> <C-u> ToggleUnderscore()
+" let g:underscore_status = 0
+" function! ToggleUnderscore()
+"   if g:underscore_status
+"     execute g:cursor_position . ',.s/ /_/g'
+"     echo 'Underscore Lock OFF'
+"   else
+"     let g:cursor_position = getpos('.')
+"     echo 'Underscore Lock ON'
+"   endif
+"   let g:underscore_status = !g:underscore_status
+"   return ''
+" endfunction
+
+" function! Wat()
+"   " execute "'0,.s/ /_/g"
+"   execute "normal! m7"
+" endfunction
+" inoremap <expr> <C-d> Wat()
+
+inoremap <C-u> <C-o>m0
+" inoremap <C-u> <ESC>m0:echo '_Lock ON'<CR>a
+" inoremap <C-d> <ESC>v'0:s/ /_/g<CR>``a
+" inoremap <C-d> <ESC>v'0:s/ /_/g<CR>``:silent noh<CR>a
+inoremap <C-d> <ESC>:let old=@/<CR>v'0:s/ /_/g<CR>``:let @/=old<CR>:silent noh<CR>a
+" inoremap <C-d> <ESC>:let old=@/<CR>v'0:s/ /_/g<CR>``:let @/=old<CR>:silent noh<CR>:echo '_Lock OFF'<CR>a
+
 noremap <silent> <M-ESC> :only<CR>
 
 let delimitMate_expand_cr = 1
@@ -319,6 +385,11 @@ let delimitMate_jump_expansion = 1
 " inoremap <expr> <S-CR> delimitMate#JumpAny()
 " inoremap <expr> <C-CR> delimitMate#JumpMany()
 
+" tab = delimitmate#shouldjump /
+" s-tab = autocomplete forward
+" c-s-tab = autocomplete back
+" s-cr = delimitmate#jumpmany /
+" c-tab = dedent
 inoremap <expr> <Tab> delimitMate#ShouldJump() ?
       \ "\<C-R>=delimitMate#JumpAny()<CR>" :
       \ "\<Tab>"
