@@ -275,6 +275,7 @@ vnoremap , :
 " inoremap <S-tab> <C-d>
 
 " http://ivanbrennan.nyc/blog/2014/10/26/vim-key-mappings/
+" http://aperiodic.net/phil/archives/Geekery/term-function-keys.html
 " Shift-Enter
 set  <F13>=[25~
 map  <F13> <S-CR>
