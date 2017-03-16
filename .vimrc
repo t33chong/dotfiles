@@ -272,7 +272,7 @@ noremap <leader>p :YRShow<CR>
 nnoremap , :
 vnoremap , :
 
-inoremap <S-tab> <C-d>
+" inoremap <S-tab> <C-d>
 
 " http://ivanbrennan.nyc/blog/2014/10/26/vim-key-mappings/
 " Shift-Enter
@@ -315,10 +315,20 @@ set  <F20>=[34~
 map  <F20> <M-;>
 map! <F20> <M-;>
 
-" Ctrl-Dash
-set  <F21>=[1;5A
-map  <F21> <C-q>
-map! <F21> <C-q>
+" Shift-Tab
+set  <F21>=[16~
+map  <F21> <S-TAB>
+map! <F21> <S-TAB>
+
+" Ctrl-Shift-Tab
+set  <F22>=[22~
+map  <F22> <C-S-TAB>
+map! <F22> <C-S-TAB>
+
+" Ctrl-Tab
+set  <F23>=[35~
+map  <F23> <C-TAB>
+map! <F23> <C-TAB>
 
 " " https://www.reddit.com/r/vim/comments/4qaqg4/something_like_capslock_but_to_map_space_to_in/
 " inoremap <expr> <C-0> ToggleUnderscore()
@@ -402,6 +412,10 @@ inoremap <expr> <Tab> delimitMate#ShouldJump() ?
       \ "\<Tab>"
 inoremap <expr> <S-CR> delimitMate#JumpMany()
 inoremap <NUL> <Tab>
+
+inoremap <S-TAB> <C-n>
+inoremap <C-S-TAB> <C-p>
+inoremap <C-TAB> <C-d>
 
 inoremap <M-,> <ESC>A,
 inoremap <M-`> <ESC>jA,
