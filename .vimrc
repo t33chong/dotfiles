@@ -403,6 +403,9 @@ vnoremap K k<C-y>
 noremap <leader>J J
 noremap <leader>K K
 
+" nnoremap G Gzb
+" vnoremap G Gzb
+
 " tab = delimitmate#shouldjump /
 " s-tab = autocomplete forward
 " c-s-tab = autocomplete back
