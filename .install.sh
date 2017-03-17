@@ -8,3 +8,8 @@ fi
 ln -sF $PWD/.* $HOME
 unlink $HOME/.git
 unlink $HOME/.gitignore
+
+if [ ! -d $HOME/.config/nvim ]; then
+  ln -s $PWD/.vim $HOME/.config/nvim
+  ln -s $PWD/.vimrc $HOME/.config/nvim/init.vim
+fi
