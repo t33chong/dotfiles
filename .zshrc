@@ -68,7 +68,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR=vim
+export EDITOR=nvim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -94,8 +94,8 @@ export GOPATH=$HOME/Code/golang
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
 
 alias sz="source $HOME/.zshrc"
-alias vi="vim"
-alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
+alias vi="nvim"
+alias vbi="nvim -c 'BundleClean' -c 'BundleInstall'"
 alias py="python"
 alias py3="python3"
 alias venv=". .env/bin/activate"
@@ -106,28 +106,43 @@ alias bu="bundle update"
 alias brake="bundle exec rake"
 alias brk="bundle exec rake"
 alias brl="bundle exec rails"
+alias wbe="bundle _1.10.6_ exec"
+alias wbu="bundle _1.10.6_ update"
+alias wbrake="bundle _1.10.6_ exec rake"
+alias wbrk="bundle _1.10.6_ exec rake"
+alias wbrl="bundle _1.10.6_ exec rails"
 alias dc="docker-compose"
 alias gad="git add"
-alias grm="git rm"
-alias gmv="git mv"
+alias gaa="git add -A; git status -sb"
+alias gau="git add -u; git status -sb"
+grm() {
+  git rm $@
+  git status -sb
+}
+gmv() {
+  git mv $@
+  git status -sb
+}
 alias gcl="git clone"
-alias gck="git checkout --"
+alias gck="git checkout --; git status -sb"
 alias gco="git checkout"
+alias gc="git commit -v; git status -sb"
 alias gct="git commit"
-alias gci="git commit -m"
+# alias gci="git commit -m"
 alias gs="git status -sb"
 alias gst="git status"
 alias gbr="git branch"
 alias ggr="git grep -n"
-alias gl="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+alias gl="git log --pretty=format:'%C(yellow)%h%Creset %C(cyan)%ad%Creset %s%C(green)%d%Creset %C(bold black)--%an%Creset' --graph --date=short"
 alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias gpl="git pull"
 alias gps="git push"
+alias gpf="git push --force-with-lease"
 alias gft="git fetch"
 alias gmg="git merge"
-alias gdf="git diff"
-alias gdfs="git diff --staged"
-alias gds="git diff --staged"
+alias gdf="git diff; git status -sb"
+alias gdfs="git diff --staged; git status -sb"
+alias gds="git diff --staged; git status -sb"
 alias grb="git rebase"
 alias gri="git rebase -i"
 alias gro="git remote"
@@ -136,8 +151,8 @@ alias gsh="git stash"
 alias gsha="gsa"
 alias gshl="git stash list --format='%gd [%cr] %gs'"
 alias gsl="git stash list --format='%gd [%cr] %gs'"
-alias gshs="git stash save"
-alias gss="git stash save"
+alias gsp="git stash save --patch; git status -sb"
+alias gss="git stash save; git status -sb"
 alias gwho="git shortlog -sn"
 alias lt="ls -lt"
 alias caf="caffeinate -is"
@@ -150,7 +165,8 @@ alias dfi="docker run -v /var/run/docker.sock:/var/run/docker.sock dduvnjak/dock
 alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l logfile start"
 # alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
-alias wtest="bundle exec testrbl -I test"
+# alias wtest="bundle exec testrbl -I test"
+alias wtest="bundle _1.10.6_ exec testrbl -I test"
 alias zk="sudo /opt/zookeeper/bin/zkServer.sh"
 
 bi() {
@@ -160,7 +176,29 @@ bi() {
   bundle install --path .bundle
 }
 
+wbi() {
+  if [ -f .path ] ; then
+    source .path
+  fi
+  bundle _1.10.6_ install --path .bundle
+}
+
 # TODO: git add last argument of previous command
+
+ff() {
+  find ${2:-.} -type f -name "*$1*" | grep -v '^\./\..*'
+}
+
+unalias ga
+ga() {
+  git add $@
+  git status -sb
+}
+
+gci() {
+  git commit -m $@
+  git status -sb
+}
 
 gsa() {
   git stash apply stash@{${1:-0}}
@@ -170,7 +208,7 @@ gsa() {
 gsw() {
   local offset=${2:-0}
   local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
-  vim -c "Gvdiff $commit" $1
+  nvim -c "Gvdiff $commit" $1
 }
 
 up() {
@@ -178,16 +216,16 @@ up() {
 }
 
 vail() {
-  vim -c "Tail $1" -c "only" -c "setlocal wrap" -c "AnsiEsc" -c "nnoremap <leader>r :call tail#Refresh()<CR>:AnsiEsc<CR>"
+  nvim -c "Tail $1" -c "only" -c "setlocal wrap" -c "AnsiEsc" -c "nnoremap <leader>r :call tail#Refresh()<CR>:AnsiEsc<CR>"
 }
 
 vcr() {
-  vim -c "CodeReview $1"
+  nvim -c "CodeReview $1"
 }
 
 vfi() {
-  # vim -p $(find . -type f -name $1 | tr "\n" " ")
-  vim -p $(find ${2:-.} -type f -name $1 | tr "\n" " ")
+  # nvim -p $(find . -type f -name $1 | tr "\n" " ")
+  nvim -p $(find ${2:-.} -type f -name $1 | tr "\n" " ")
 }
 
 ks() {
@@ -282,3 +320,5 @@ alias b="bundle"
 alias d="docker"
 alias e="ember"
 alias r="rails"
+alias v="nvim"
+alias vv="f -e nvim"
