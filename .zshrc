@@ -68,7 +68,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR=nvim
+export EDITOR=vim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -94,8 +94,8 @@ export GOPATH=$HOME/Code/golang
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
 
 alias sz="source $HOME/.zshrc"
-alias vi="nvim"
-alias vbi="nvim -c 'BundleClean' -c 'BundleInstall'"
+alias vi="vim"
+alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
 alias py="python"
 alias py3="python3"
 alias venv=". .env/bin/activate"
@@ -208,7 +208,7 @@ gsa() {
 gsw() {
   local offset=${2:-0}
   local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
-  nvim -c "Gvdiff $commit" $1
+  vim -c "Gvdiff $commit" $1
 }
 
 up() {
@@ -216,16 +216,16 @@ up() {
 }
 
 vail() {
-  nvim -c "Tail $1" -c "only" -c "setlocal wrap" -c "AnsiEsc" -c "nnoremap <leader>r :call tail#Refresh()<CR>:AnsiEsc<CR>"
+  vim -c "Tail $1" -c "only" -c "setlocal wrap" -c "AnsiEsc" -c "nnoremap <leader>r :call tail#Refresh()<CR>:AnsiEsc<CR>"
 }
 
 vcr() {
-  nvim -c "CodeReview $1"
+  vim -c "CodeReview $1"
 }
 
 vfi() {
-  # nvim -p $(find . -type f -name $1 | tr "\n" " ")
-  nvim -p $(find ${2:-.} -type f -name $1 | tr "\n" " ")
+  # vim -p $(find . -type f -name $1 | tr "\n" " ")
+  vim -p $(find ${2:-.} -type f -name $1 | tr "\n" " ")
 }
 
 ks() {
@@ -320,5 +320,5 @@ alias b="bundle"
 alias d="docker"
 alias e="ember"
 alias r="rails"
-alias v="nvim"
-alias vv="f -e nvim"
+alias v="vim"
+alias vv="f -e vim"
