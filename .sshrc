@@ -1,0 +1,9 @@
+export INPUTRC="$SSHHOME/.sshrc.d/.inputrc"
+export SCREENRC="$SSHHOME/.sshrc.d/.screenrc"
+export VIMINIT="source $SSHHOME/.sshrc.d/.vimrc"
+alias s="screen -D -R"
+alias v="vim"
+alias vi="vim"
+ff() {
+    find ${2:-.} -type f -name "*$1*" | grep -v '^\./\..*'
+}
