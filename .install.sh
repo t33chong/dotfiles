@@ -8,6 +8,9 @@ fi
 ln -sF $PWD/.* $HOME
 unlink $HOME/.git
 unlink $HOME/.gitignore
+unlink $HOME/.sshrc.d
+
+cp -R .sshrc.d $HOME/.sshrc.d
 
 if [ ! -d $HOME/.config/nvim ]; then
   ln -s $PWD/.vim $HOME/.config/nvim
