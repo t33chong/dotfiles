@@ -1,3 +1,5 @@
+stty werase undef
+bind '"\C-w": unix-filename-rubout'
 export INPUTRC="$SSHHOME/.sshrc.d/.inputrc"
 export SCREENRC="$SSHHOME/.sshrc.d/.screenrc"
 export VIMINIT="source $SSHHOME/.sshrc.d/.vimrc"
