@@ -1,5 +1,6 @@
 filetype plugin indent on
 syntax on
+colorscheme peachpuff
 set tabstop=2
 set shiftwidth=2
 set expandtab
