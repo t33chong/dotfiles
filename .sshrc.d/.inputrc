@@ -1,5 +1,0 @@
-set editing-mode vi
-set keymap vi-command
-set keyseq-timeout 0
-set show-mode-in-prompt on
-set blink-matching-paren on
