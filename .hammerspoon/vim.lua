@@ -8,7 +8,6 @@ function alert(text, color)
     textSize = 96
   }
   return hs.alert.show(text, style, 0.25)
-  -- return hs.alert.show(text)
 end
 
 function alertI() return alert('+', '#00FF00') end
@@ -22,7 +21,6 @@ function alertV() return alert('v', '#FFFF00') end
 local normal = hs.hotkey.modal.new()
 
 -- <cmd-esc> - enter Normal mode {{{2
--- I don't remap <esc> because it's too risky
 enterNormal = hs.hotkey.bind({'cmd'}, 'escape', function()
     normal:enter()
     alertN()
