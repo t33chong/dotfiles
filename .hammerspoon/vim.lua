@@ -49,10 +49,17 @@ function down() hs.eventtap.keyStroke({}, 'Down') end
 normal:bind({}, 'j', down, nil, down)
 -- }}}3
 
--- w - move to next word {{{3
-function word() hs.eventtap.keyStroke({'alt'}, 'Right') end
-normal:bind({}, 'w', word, nil, word)
-normal:bind({}, 'e', word, nil, word)
+-- e - move to end of word {{{3
+function endWord() hs.eventtap.keyStroke({'alt'}, 'Right') end
+normal:bind({}, 'e', endWord, nil, endWord)
+-- }}}3
+
+-- w - move to beginning of next word {{{3
+function nextWord()
+  hs.eventtap.keyStroke({'alt'}, 'Right')
+  hs.eventtap.keyStroke({}, 'Right')
+end
+normal:bind({}, 'w', nextWord, nil, nextWord)
 -- }}}3
 
 -- b - move to previous word {{{3
@@ -309,6 +316,19 @@ function word() hs.eventtap.keyStroke({'alt', 'shift'}, 'Right') end
 visual:bind({}, 'w', word, nil, word)
 visual:bind({}, 'e', word, nil, word)
 -- }}}3
+
+-- -- e - move to end of word {{{3
+-- function vendWord() hs.eventtap.keyStroke({'alt', 'shift'}, 'Right') end
+-- visual:bind({}, 'e', endWord, nil, endWord)
+-- -- }}}3
+
+-- -- w - move to beginning of next word {{{3
+-- function vnextWord()
+--   hs.eventtap.keyStroke({'alt', 'shift'}, 'Right')
+--   hs.eventtap.keyStroke({'shift'}, 'Right')
+-- end
+-- visual:bind({}, 'w', vnextWord, nil, vnextWord)
+-- -- }}}3
 
 -- b - move to previous word {{{3
 function back() hs.eventtap.keyStroke({'alt', 'shift'}, 'Left') end
