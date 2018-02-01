@@ -181,7 +181,9 @@ alias pls='sudo zsh -c "$(fc -nl -1)"'
 alias k='zsh -c "$(fc -nl -1)"'
 alias dfi="docker run -v /var/run/docker.sock:/var/run/docker.sock dduvnjak/dockerfile-from-image"
 
-alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
+# alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
+alias nom='npm install && npx bower install'
+alias nem='npx ember'
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l logfile start"
 # alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
 # alias wtest="bundle exec testrbl -I test"
@@ -361,3 +363,8 @@ compdef sshrc=ssh
 
 # added by travis gem
 [ -f /Users/tristan/.travis/travis.sh ] && source /Users/tristan/.travis/travis.sh
+# Load nodenv automatically by appending
+# the following to ~/.zshrc:
+
+eval "$(nodenv init -)"
+eval `ssh-agent` > /dev/null && ssh-add -A 2> /dev/null
