@@ -154,3 +154,6 @@ fi
 eval "$(fasd --init auto)"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# added by travis gem
+[ -f /Users/tristan/.travis/travis.sh ] && source /Users/tristan/.travis/travis.sh

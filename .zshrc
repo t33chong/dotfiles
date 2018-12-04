@@ -1,4 +1,5 @@
 export TERM=xterm-256color
+export CLICOLOR_FORCE=1
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 # If you come from bash you might have to change your $PATH.
@@ -56,7 +57,8 @@ ZSH_CUSTOM=$HOME/.zsh
 # Add wisely, as too many plugins slow down shell startup.
 eval "$(hub alias -s)"
 # eval "$(thefuck --alias fak)"
-plugins=(docker fasd git vi-mode zsh-syntax-highlighting)
+# plugins=(docker fasd git knife vi-mode zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(docker fasd git vi-mode zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,18 +89,25 @@ export EDITOR=vim
 
 KEYTIMEOUT=15 # Raised from 1 because `bindkey '\e.'` wasn't working
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+bindkey '^[[16~' forward-word  # S-TAB
+bindkey '^[[25~' autosuggest-execute  # S-CR
+
 setopt ignoreeof
 unsetopt share_history
 
 export GOPATH=$HOME/Code/golang
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
+export SBT_CREDENTIALS=$HOME/.sbt/credentials
 
 alias sz="source $HOME/.zshrc"
 alias vi="vim"
 alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
-alias py="python"
+alias py="python3"
+alias py2="python2"
 alias py3="python3"
-alias venv=". .env/bin/activate"
+alias pir="pip3 install -r requirements.txt"
+alias venv=". env/bin/activate"
 alias ir="irb --simple-prompt"
 # alias bi="bundle install --path .bundle"
 alias be="bundle exec"
@@ -128,31 +137,44 @@ alias gcl="git clone"
 alias gck="git checkout --; git status -sb"
 alias gco="git checkout"
 alias gc="git commit -v; git status -sb"
+alias gca="git commit --amend --no-edit; git status -sb"
 alias gct="git commit"
 # alias gci="git commit -m"
 alias gs="git status -sb"
 alias gst="git status"
 alias gbr="git branch"
 alias ggr="git grep -n"
+alias gin="git init"
 alias gl="git log --pretty=format:'%C(yellow)%h%Creset %C(cyan)%ad%Creset %s%C(green)%d%Creset %C(bold black)--%an%Creset' --graph --date=short"
 alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias gpl="git pull"
 alias gps="git push"
 alias gpf="git push --force-with-lease"
 alias gft="git fetch"
+alias gfr="git fetch origin master && git rebase origin/master"
 alias gmg="git merge"
-alias gdf="git diff; git status -sb"
+# alias gdf="git diff; git status -sb"
+gdf() {
+  git diff $@
+  git status -sb
+}
 alias gdfs="git diff --staged; git status -sb"
 alias gds="git diff --staged; git status -sb"
+alias gra="git remote add origin"
 alias grb="git rebase"
 alias gri="git rebase -i"
 alias gro="git remote"
+alias groso="git remote show origin"
 alias grh="git reset HEAD"
 alias gsh="git stash"
 alias gsha="gsa"
 alias gshl="git stash list --format='%gd [%cr] %gs'"
 alias gsl="git stash list --format='%gd [%cr] %gs'"
-alias gsp="git stash save --patch; git status -sb"
+# alias gsp="git stash save --patch; git status -sb"
+gsp() {
+  git stash save --patch $@
+  git status -sb
+}
 alias gss="git stash save; git status -sb"
 alias gwho="git shortlog -sn"
 alias l="ls -lh"
@@ -166,11 +188,14 @@ alias pls='sudo zsh -c "$(fc -nl -1)"'
 alias k='zsh -c "$(fc -nl -1)"'
 alias dfi="docker run -v /var/run/docker.sock:/var/run/docker.sock dduvnjak/dockerfile-from-image"
 
-alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
+# alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
+alias nom='npm install && npx bower install'
+alias nem='npx ember'
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l logfile start"
 # alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
 # alias wtest="bundle exec testrbl -I test"
 alias wtest="bundle _1.10.6_ exec testrbl -I test"
+alias etest="npm test -- --filter"
 alias zk="sudo /opt/zookeeper/bin/zkServer.sh"
 
 bi() {
@@ -189,8 +214,16 @@ wbi() {
 
 # TODO: git add last argument of previous command
 
+fa() {
+  find ${2:-.} -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp'
+}
+
+fd() {
+  find ${2:-.} -type d -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp'
+}
+
 ff() {
-  find ${2:-.} -type f -name "*$1*" | grep -v '^\./\..*'
+  find ${2:-.} -type f -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp'
 }
 
 unalias ga
@@ -292,6 +325,10 @@ dx() {
   docker exec -it $1 /bin/bash
 }
 
+docker-ip() {
+  docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
+}
+
 # y2j() {
 #   python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' $1 > $2
 # }
@@ -324,8 +361,20 @@ alias b="bundle"
 alias d="docker"
 alias e="ember"
 alias r="rails"
+alias sshh="ssh"
+alias ss="sshrc"
 alias v="vim"
 alias vv="f -e vim"
 psg() {
   ps aux | grep -v grep | grep $@
 }
+
+# compdef sshrc=ssh
+
+# added by travis gem
+[ -f /Users/tristan/.travis/travis.sh ] && source /Users/tristan/.travis/travis.sh
+# Load nodenv automatically by appending
+# the following to ~/.zshrc:
+
+# eval "$(nodenv init -)"
+eval `ssh-agent` > /dev/null && ssh-add -A 2> /dev/null

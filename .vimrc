@@ -20,6 +20,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'junegunn/gv.vim'
+Bundle 'junegunn/vim-peekaboo'
 Bundle 'tristaneuan/conflict-marker.vim'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-surround'
@@ -66,6 +67,7 @@ Bundle 'b4b4r07/vim-hcl'
 Bundle 'rizzatti/dash.vim'
 " Bundle 'yuratomo/w3m.vim'
 Bundle 'elixir-lang/vim-elixir'
+Bundle 'machakann/vim-highlightedyank'
 
 if VundleNotInstalled == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -145,6 +147,7 @@ call camelcasemotion#CreateMotionMappings('<leader>')
 
 function! StatuslineBranch()
   if strlen(fugitive#head()) > 0
+    " return '[' . substitute(system('git_repo_name'), '\n', '', '') . '/' . fugitive#head() . '] '
     return '(' . fugitive#head() . ') '
   endif
   return ''
@@ -535,8 +538,19 @@ map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" TODO: Why doesn't this work?
-nnoremap Y yg_
-
 " nnoremap " :reg<CR>"
 " vnoremap " :reg<CR>"
+" nnoremap Y yg_
+
+" nunmap <C-n>
+" nunmap <C-p>
+" nnoremap <C-n> 10j
+" nnoremap <C-p> 10k
+" vnoremap <C-n> 10j
+" vnoremap <C-p> 10k
+nnoremap <C-n> nzz
+nnoremap <C-p> Nzz
+vnoremap <C-n> nzz
+vnoremap <C-p> Nzz
+
+map y <Plug>(highlightedyank)

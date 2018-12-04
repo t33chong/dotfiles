@@ -1,0 +1,54 @@
+stty werase undef
+bind '\C-w:unix-filename-rubout'
+
+cat > $HOME/.inputrc << EOL
+set editing-mode vi
+set keymap vi-command
+set keyseq-timeout 0
+set show-mode-in-prompt on
+set blink-matching-paren on
+EOL
+
+cat > $HOME/.screenrc << EOL
+startup_message off
+defscrollback 10000
+term screen-256color
+caption always "%?%F%? %L=%-Lw%45>%{+r} %n%f* %t %{-}%+Lw%-0<"
+EOL
+
+cat > $HOME/.vimrc << EOL
+filetype plugin indent on
+syntax on
+colorscheme peachpuff
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set softtabstop=2
+set smartindent
+set autoindent
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set showmatch
+set backspace=indent,eol,start
+set number
+set foldmethod=indent
+set nofoldenable
+set showcmd
+set ruler
+nnoremap , :
+vnoremap , :
+nnoremap <silent> <C-h> :wincmd h<cr>
+nnoremap <silent> <C-j> :wincmd j<cr>
+nnoremap <silent> <C-k> :wincmd k<cr>
+nnoremap <silent> <C-l> :wincmd l<cr>
+nnoremap <silent> \ :noh<CR>
+EOL
+
+alias s="screen -D -R"
+alias v="vim"
+alias vi="vim"
+ff() {
+    find ${2:-.} -type f -name "*$1*" | grep -v '^\./\..*'
+}
