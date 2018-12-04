@@ -33,7 +33,7 @@ Bundle 'jeetsukumaran/vim-indentwise'
 Bundle 'mattn/emmet-vim'
 Bundle 'AndrewRadev/splitjoin.vim'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'vim-scripts/YankRing.vim'
+" Bundle 'vim-scripts/YankRing.vim'
 Bundle 'raimondi/delimitmate'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
@@ -108,7 +108,7 @@ set noeb vb t_vb=
 set backupdir=$HOME/.vim/backup//
 set directory=$HOME/.vim/swap//
 
-set clipboard=unnamed
+set clipboard+=unnamed
 
 set diffopt+=vertical
 
@@ -204,6 +204,7 @@ let g:rainbow_conf = {
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_html_checkers=['']
+let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_json_checkers=['jsonlint']
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_ruby_checkers=['rubocop']
@@ -267,7 +268,7 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
 
-noremap <leader>p :YRShow<CR>
+" noremap <leader>p :YRShow<CR>
 
 nnoremap , :
 vnoremap , :
@@ -431,6 +432,11 @@ nnoremap <M-`> <ESC>jA,
 nnoremap <M-;> <ESC>A;
 nnoremap <M-\> <ESC>jA;
 
+" if python, bind alt+; to : at end of line, else ;
+autocmd FileType python inoremap <M-;> <ESC>A:<CR>
+autocmd FileType python nnoremap <M-;> <ESC>A:<CR>
+
+
 " inoremap <expr> <F14> delimitMate#ShouldJump() ?
 "       \ "\<C-R>=delimitMate#JumpMany()<CR>" :
 "       \ "\<C-d>"
@@ -481,8 +487,8 @@ nnoremap <expr> <leader>v '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 set rtp+=/usr/local/opt/fzf
 
-let g:yankring_history_dir = '$HOME/.vim'
-let g:yankring_history_file = '.yankring_history'
+" let g:yankring_history_dir = '$HOME/.vim'
+" let g:yankring_history_file = '.yankring_history'
 
 let g:gitgutter_sign_column_always = 1
 
@@ -531,3 +537,6 @@ map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
 
 " TODO: Why doesn't this work?
 nnoremap Y yg_
+
+" nnoremap " :reg<CR>"
+" vnoremap " :reg<CR>"

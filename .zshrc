@@ -102,6 +102,7 @@ alias venv=". .env/bin/activate"
 alias ir="irb --simple-prompt"
 # alias bi="bundle install --path .bundle"
 alias be="bundle exec"
+alias bx="bundle exec"
 alias bu="bundle update"
 alias brake="bundle exec rake"
 alias brk="bundle exec rake"
@@ -154,7 +155,10 @@ alias gsl="git stash list --format='%gd [%cr] %gs'"
 alias gsp="git stash save --patch; git status -sb"
 alias gss="git stash save; git status -sb"
 alias gwho="git shortlog -sn"
-alias lt="ls -lt"
+alias l="ls -lh"
+alias la="ls -lAh"
+alias lt="ls -lht"
+alias lat="ls -lAht"
 alias caf="caffeinate -is"
 # alias tm="TERM=xterm-256color tmux attach"
 alias tm="tmux -2 attach"
@@ -173,7 +177,7 @@ bi() {
   if [ -f .path ] ; then
     source .path
   fi
-  bundle install --path .bundle
+  bundle install --path .bundle $@
 }
 
 wbi() {
@@ -314,7 +318,7 @@ autoload -U compinit && compinit
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey -r '\ec' # Unbind fzf-cd-widget
 
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
 
 alias b="bundle"
 alias d="docker"
@@ -322,3 +326,6 @@ alias e="ember"
 alias r="rails"
 alias v="vim"
 alias vv="f -e vim"
+psg() {
+  ps aux | grep -v grep | grep $@
+}
