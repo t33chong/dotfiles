@@ -1,4 +1,5 @@
 export TERM=xterm-256color
+export CLICOLOR_FORCE=1
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 # If you come from bash you might have to change your $PATH.
@@ -102,9 +103,11 @@ export SBT_CREDENTIALS=$HOME/.sbt/credentials
 alias sz="source $HOME/.zshrc"
 alias vi="vim"
 alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
-alias py="python"
+alias py="python3"
+alias py2="python2"
 alias py3="python3"
-alias venv=". .env/bin/activate"
+alias pir="pip3 install -r requirements.txt"
+alias venv=". env/bin/activate"
 alias ir="irb --simple-prompt"
 # alias bi="bundle install --path .bundle"
 alias be="bundle exec"
