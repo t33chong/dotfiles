@@ -4,22 +4,14 @@
 [core]
   autocrlf = input
   safecrlf = true
-	excludesfile = /Users/tristan/.gitignore.global
+  excludesfile = /Users/tristan/.gitignore.global
 [push]
   default = current
-[alias]
-  co = checkout
-  ci = commit
-  st = status
-  br = branch
-  lg = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-  type = cat-file -t
-  dump = cat-file -p
 [github]
-	user = tristaneuan
+  user = tristaneuan
 [init]
-	templatedir = ~/.git-templates
+  templatedir = ~/.git-templates
 [credential]
-	helper = store
+  helper = store
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
