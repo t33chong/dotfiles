@@ -117,6 +117,9 @@ ua() {
   [ "$(whence -w $cmd | awk '{print $2}')" = "alias" ] && unalias $cmd
 }
 
+# https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+# Install: $ git clone --bare git@github.com:tristaneuan/dotfiles.git $HOME/.dotfiles
+alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias sz="source $HOME/.zshrc"
 
 alias d="docker"

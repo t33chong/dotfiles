@@ -1,3 +1,4 @@
+.dotfiles
 .vim/backup/*
 !.vim/backup/.gitkeep
 .vim/bundle/*
