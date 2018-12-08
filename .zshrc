@@ -1,9 +1,9 @@
 export TERM=xterm-256color
-export CLICOLOR_FORCE=1
 [ -n "$TMUX" ] && export TERM=screen-256color
+export CLICOLOR_FORCE=1
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/tristan/.oh-my-zsh
@@ -21,7 +21,7 @@ ZSH_THEME="tristan"
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -46,7 +46,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.zsh
@@ -56,8 +56,6 @@ ZSH_CUSTOM=$HOME/.zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 eval "$(hub alias -s)"
-# eval "$(thefuck --alias fak)"
-# plugins=(docker fasd git knife vi-mode zsh-autosuggestions zsh-syntax-highlighting)
 plugins=(docker fasd git vi-mode zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -78,260 +76,11 @@ export EDITOR=vim
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-KEYTIMEOUT=15 # Raised from 1 because `bindkey '\e.'` wasn't working
-
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
-bindkey '^[[16~' forward-word  # S-TAB
-bindkey '^[[25~' autosuggest-execute  # S-CR
-
 setopt ignoreeof
 unsetopt share_history
 
-export GOPATH=$HOME/Code/golang
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:$GOPATH/bin:$HOME/.rvm/bin
-export SBT_CREDENTIALS=$HOME/.sbt/credentials
-
-alias sz="source $HOME/.zshrc"
-alias vi="vim"
-alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
-alias py="python3"
-alias py2="python2"
-alias py3="python3"
-alias pir="pip3 install -r requirements.txt"
-alias venv=". env/bin/activate"
-alias ir="irb --simple-prompt"
-# alias bi="bundle install --path .bundle"
-alias be="bundle exec"
-alias bx="bundle exec"
-alias bu="bundle update"
-alias brake="bundle exec rake"
-alias brk="bundle exec rake"
-alias brl="bundle exec rails"
-alias wbe="bundle _1.10.6_ exec"
-alias wbu="bundle _1.10.6_ update"
-alias wbrake="bundle _1.10.6_ exec rake"
-alias wbrk="bundle _1.10.6_ exec rake"
-alias wbrl="bundle _1.10.6_ exec rails"
-alias dc="docker-compose"
-alias gad="git add"
-alias gaa="git add -A; git status -sb"
-alias gau="git add -u; git status -sb"
-grm() {
-  git rm $@
-  git status -sb
-}
-gmv() {
-  git mv $@
-  git status -sb
-}
-alias gcl="git clone"
-alias gck="git checkout --; git status -sb"
-alias gco="git checkout"
-alias gc="git commit -v; git status -sb"
-alias gca="git commit --amend --no-edit; git status -sb"
-alias gct="git commit"
-# alias gci="git commit -m"
-alias gs="git status -sb"
-alias gst="git status"
-alias gbr="git branch"
-alias ggr="git grep -n"
-alias gin="git init"
-alias gl="git log --pretty=format:'%C(yellow)%h%Creset %C(cyan)%ad%Creset %s%C(green)%d%Creset %C(bold black)--%an%Creset' --graph --date=short"
-alias glg="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
-alias gpl="git pull"
-alias gps="git push"
-alias gpf="git push --force-with-lease"
-alias gft="git fetch"
-alias gfr="git fetch origin master && git rebase origin/master"
-alias gmg="git merge"
-# alias gdf="git diff; git status -sb"
-gdf() {
-  git diff $@
-  git status -sb
-}
-alias gdfs="git diff --staged; git status -sb"
-alias gds="git diff --staged; git status -sb"
-alias gra="git remote add origin"
-alias grb="git rebase"
-alias gri="git rebase -i"
-alias gro="git remote"
-alias groso="git remote show origin"
-alias grh="git reset HEAD"
-alias gsh="git stash"
-alias gsha="gsa"
-alias gshl="git stash list --format='%gd [%cr] %gs'"
-alias gsl="git stash list --format='%gd [%cr] %gs'"
-# alias gsp="git stash save --patch; git status -sb"
-gsp() {
-  git stash save --patch $@
-  git status -sb
-}
-alias gss="git stash save; git status -sb"
-alias gwho="git shortlog -sn"
-alias l="ls -lh"
-alias la="ls -lAh"
-alias lt="ls -lht"
-alias lat="ls -lAht"
-alias caf="caffeinate -is"
-# alias tm="TERM=xterm-256color tmux attach"
-alias tm="tmux -2 attach"
-alias pls='sudo zsh -c "$(fc -nl -1)"'
-alias k='zsh -c "$(fc -nl -1)"'
-alias dfi="docker run -v /var/run/docker.sock:/var/run/docker.sock dduvnjak/dockerfile-from-image"
-
-# alias nom='rm -rf node_modules bower_components tmp && npm cache clean && bower cache clean && bower install && npm install'
-alias nom='npm install && npx bower install'
-alias nem='npx ember'
-alias pgstart="pg_ctl -D /usr/local/var/postgres -l logfile start"
-# alias wtest="docker-compose run -e PARALLEL_TEST_PROCESSORS=4 --rm web bundle exec testrbl -I test"
-# alias wtest="bundle exec testrbl -I test"
-alias wtest="bundle _1.10.6_ exec testrbl -I test"
-alias etest="npm test -- --filter"
-alias zk="sudo /opt/zookeeper/bin/zkServer.sh"
-
-bi() {
-  if [ -f .path ] ; then
-    source .path
-  fi
-  bundle install --path .bundle $@
-}
-
-wbi() {
-  if [ -f .path ] ; then
-    source .path
-  fi
-  bundle _1.10.6_ install --path .bundle
-}
-
-# TODO: git add last argument of previous command
-
-fa() {
-  find ${2:-.} -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp'
-}
-
-fd() {
-  find ${2:-.} -type d -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp'
-}
-
-ff() {
-  find ${2:-.} -type f -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp'
-}
-
-unalias ga
-ga() {
-  git add $@
-  git status -sb
-}
-
-gci() {
-  git commit -m $@
-  git status -sb
-}
-
-gsa() {
-  git stash apply stash@{${1:-0}}
-}
-
-# git diff between current and n versions ago
-gsw() {
-  local offset=${2:-0}
-  local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
-  vim -c "Gvdiff $commit" $1
-}
-
-up() {
-  cd $(repeat ${1:-1} printf '../')
-}
-
-vail() {
-  vim -c "Tail $1" -c "only" -c "setlocal wrap" -c "AnsiEsc" -c "nnoremap <leader>r :call tail#Refresh()<CR>:AnsiEsc<CR>"
-}
-
-vcr() {
-  vim -c "CodeReview $1"
-}
-
-vfi() {
-  # vim -p $(find . -type f -name $1 | tr "\n" " ")
-  vim -p $(find ${2:-.} -type f -name $1 | tr "\n" " ")
-}
-
-ks() {
-  bundle exec knife $@ -c ~/.chef/stg/knife.rb
-}
-
-kp() {
-  bundle exec knife $@ -c ~/.chef/prod/knife.rb
-}
-
-export MARKPATH=$HOME/.marks
-to() {
-  cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
-}
-mark() {
-  mkdir -p $MARKPATH; ln -s $(pwd) $MARKPATH/$1
-}
-unmark() {
-  rm -i $MARKPATH/$1
-}
-marks() {
-  ls -l $MARKPATH | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
-
-extract()      # Handy Extract Program
-{
-    if [ -f $1 ] ; then
-        case $1 in
-            *.tar.bz2)   tar xvjf "$1"    ;;
-            *.tar.gz)    tar xvzf "$1"    ;;
-            *.bz2)       bunzip2 "$1"     ;;
-            *.rar)       unrar x "$1"     ;;
-            *.gz)        gunzip "$1"      ;;
-            *.tar)       tar xvf "$1"     ;;
-            *.tbz2)      tar xvjf "$1"    ;;
-            *.tgz)       tar xvzf "$1"    ;;
-            *.zip)       unzip "$1"       ;;
-            *.Z)         uncompress "$1"  ;;
-            *.7z)        7z x "$1"        ;;
-            *)           echo "'$1' cannot be extracted via >extract<" ;;
-        esac
-    else
-        echo "'$1' is not a valid file!"
-    fi
-}
-
-rm_recursive() {
-  find . -type f -name "$1" -delete
-}
-
-dockerpls() {
-  eval $(docker-machine env default)
-}
-
-dr() {
-  docker run -it $1 /bin/bash
-}
-
-dx() {
-  docker exec -it $1 /bin/bash
-}
-
-docker-ip() {
-  docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
-}
-
-# y2j() {
-#   python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' $1 > $2
-# }
+KEYTIMEOUT=15 # Raised from 1 because `bindkey '\e.'` wasn't working
+bindkey '\e.' insert-last-word
 
 # Place cursor at beginning of line in vicmd mode
 up-and-beginning() {
@@ -347,34 +96,180 @@ bindkey -M vicmd j down-and-beginning
 zle -N up-and-beginning
 zle -N down-and-beginning
 
-bindkey '\e.' insert-last-word
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+bindkey '^[[16~' forward-word  # S-TAB
+bindkey '^[[25~' autosuggest-execute  # S-CR
 
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+ua() {
+  local cmd=$1
+  [ "$(whence -w $cmd | awk '{print $2}')" = "alias" ] && unalias $cmd
+}
+
+alias sz="source $HOME/.zshrc"
+
+alias d="docker"
+alias dc="docker-compose"
+ua dip
+dip() { docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@" }
+ua dr
+dr() { docker run -it $1 /bin/bash }
+ua dx
+dx() { docker exec -it $1 /bin/bash }
+
+ua fa
+fa() { find ${2:-.} -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp' } 
+ua fd
+fd() { find ${2:-.} -type d -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp' }
+ua ff
+ff() { find ${2:-.} -type f -name "*$1*" | grep -v '^\./\..*' | grep -v '^\./tmp' }
+
+alias g="git"
+ua ga
+ga() { git add $@; git status -sb }
+ua gap
+gap() { git add -p $@; git status -sb }
+alias gaa="git add -A git status -sb"
+alias gau="git add -u; git status -sb"
+ua grm
+grm() { git rm $@; git status -sb }
+ua gmv
+gmv() { git mv $@; git status -sb }
+ua gcl
+gcl() { local repo="$@"; git clone $repo && cd $(echo -n "$repo" | cut -d'/' -f2) }
+ua gcb
+gcb() { git checkout -b $@; git status -sb }
+ua gck
+gck() { git checkout -- $@; git status -sb }
+ua gco
+gco() { git checkout $@; git status -sb }
+alias gcp="git cherry-pick"
+alias gc="git commit -v; git status -sb"
+alias gca="git commit --amend --no-edit; git status -sb"
+ua gci
+gci() { git commit -m $@; git status -sb }
+alias gb="git branch"
+alias gbd="git branch -D"
+alias ggr="git grep -n"
+alias gin="git init; git status -sb"
+alias gl="git log --pretty=format:'%C(yellow)%h%Creset %C(cyan)%ad%Creset %s%C(green)%d%Creset %C(bold black)--%an%Creset' --graph --date=short"
+alias gpl="git pull"
+ua gps
+gps() { # set upstream if not configured & no arguments passed
+  local branch=$(git branch | grep \* | cut -d' ' -f2)
+  if [[ $# -gt 0 || $(git rev-parse --abbrev-ref $branch@{u} 2>/dev/null) ]]; then
+    git push $@
+  else
+    git push -u origin $branch
+  fi
+}
+alias gpf="git push --force-with-lease"
+alias gft="git fetch"
+alias gfr="git fetch origin master && git rebase origin/master"
+alias gmg="git merge"
+ua gd
+gd() { git diff $@; git status -sb }
+alias gds="git diff --staged; git status -sb"
+alias grb="git rebase"
+alias gri="git rebase -i"
+alias gr="git remote"
+alias gra="git remote add"
+alias grao="git remote add origin"
+alias grs="git remote show"
+alias grso="git remote show origin"
+alias grh="git reset HEAD"
+alias gsh="git stash"
+alias gsl="git stash list --format='%gd [%cr] %gs'"
+ua gsa
+gsa() { git stash apply stash@{${1:-0}}; git status -sb }
+ua gsp
+gsp() { git stash save --patch $@; git status -sb }
+ua gss
+gss() { git stash save $@; git status -sb }
+alias gs="git status -sb"
+alias gst="git status"
+alias gwho="git shortlog -sn"
+ua gsw
+gsw() { # git diff between current and n versions ago
+  local offset=${2:-0}
+  local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
+  vim -c "Gvdiff $commit" $1
+}
+
+alias l="ls -lh"
+alias la="ls -lAh"
+alias lt="ls -lht"
+alias lat="ls -lAht"
+
+alias py="python3"
+alias py2="python2"
+alias py3="python3"
+alias pir="pip3 install -r requirements.txt"
+alias mkvenv="python3 -m venv env"
+alias venv=". env/bin/activate"
+
+alias ir="irb --simple-prompt"
+alias bi="bundle install --path vendor/bundle"
+alias bx="bundle exec"
+alias bu="bundle update"
+alias brk="bundle exec rake"
+alias brl="bundle exec rails"
+
+alias v="vim"
+alias vi="vim"
+alias vv="f -e vim"
+alias vbi="vim -c 'BundleClean' -c 'BundleInstall'"
+ua vff
+vff() { vim -p $(find ${2:-.} -type f -name $1 | tr "\n" " ") }
+
+alias caf="caffeinate -is"
+alias tm="tmux -2 attach"
+alias k='zsh -c "$(fc -nl -1)"'
+ua psg
+psg() { ps aux | grep -v grep | grep $@ }
+ua kps
+kps() { ps aux | grep -v grep | grep $@ | awk '{print $2}' | xargs kill -9 }
+ua nh
+nh() { unset HISTFILE; export _FASD_RO=true }
+ua x
+x() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xvjf "$1"    ;;
+      *.tar.gz)    tar xvzf "$1"    ;;
+      *.bz2)       bunzip2 "$1"     ;;
+      *.rar)       unrar x "$1"     ;;
+      *.gz)        gunzip "$1"      ;;
+      *.tar)       tar xvf "$1"     ;;
+      *.tbz2)      tar xvjf "$1"    ;;
+      *.tgz)       tar xvzf "$1"    ;;
+      *.zip)       unzip "$1"       ;;
+      *.Z)         uncompress "$1"  ;;
+      *.7z)        7z x "$1"        ;;
+      *)           echo "'$1' cannot be extracted via >x<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file!"
+  fi
+}
+
+# Requires `brew install fasd`
+which fasd >/dev/null && eval "$(fasd --init auto)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey -r '\ec' # Unbind fzf-cd-widget
 
-# eval "$(fasd --init auto)"
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-alias b="bundle"
-alias d="docker"
-alias e="ember"
-alias r="rails"
-alias sshh="ssh"
-alias ss="sshrc"
-alias v="vim"
-alias vv="f -e vim"
-psg() {
-  ps aux | grep -v grep | grep $@
-}
-
-# compdef sshrc=ssh
-
-# added by travis gem
-[ -f /Users/tristan/.travis/travis.sh ] && source /Users/tristan/.travis/travis.sh
-# Load nodenv automatically by appending
-# the following to ~/.zshrc:
-
-# eval "$(nodenv init -)"
 eval `ssh-agent` > /dev/null && ssh-add -A 2> /dev/null

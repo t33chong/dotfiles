@@ -1,1 +1,1 @@
-export HISTIGNORE="ls:history:vault*"
+export HISTIGNORE="ls:history:nh:vault*"

@@ -36,7 +36,15 @@ git_branch_formatted() {
   fi
 }
 
+prompt_char() {
+  if [ -n "$HISTFILE" ]; then
+    echo "$"
+  else
+    echo "%%"
+  fi
+}
+
 MODE_INDICATOR="%{$fg[yellow]%}"
 
-PROMPT='%B$(git_branch_formatted)%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%} $(vi_mode_prompt_info)$%b %{$reset_color%}'
-RPROMPT=""
+PROMPT='%B$(git_branch_formatted)%{$fg[cyan]%}$(git_repo_color)$(get_pwd)% %{$fg[cyan]%} $(vi_mode_prompt_info)$(prompt_char)%b %{$reset_color%}'
+RPROMPT=''
