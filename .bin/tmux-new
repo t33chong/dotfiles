@@ -18,3 +18,10 @@ done
 n=$(cat $temp_file)
 unlink $temp_file
 tmux new-session -s $n -d
+
+# If calling session:window ('#S:#I') provided, replace the new session window with it
+if [[ $1 ]]; then
+  tmux move-window -s $1 -t $n:
+  tmux kill-window -t $n:1
+  tmux move-window -s $n:2 -t $n:1
+fi

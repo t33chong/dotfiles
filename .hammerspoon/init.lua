@@ -1,4 +1,21 @@
-require "vim"
+-- require "vim"
+
+
+local VimMode = hs.loadSpoon('VimMode')
+local vim = VimMode:new()
+vim
+  :bindHotKeys({ enter = {{'cmd'}, 'escape'} })
+  :shouldDimScreenInNormalMode(false)
+  :disableForApp('Code')
+  :disableForApp('MacVim')
+  :disableForApp('zoom.us')
+
+
+-- Vim = require('vim_bindings')
+-- local v = Vim:new()
+-- -- v:setDebug(true) -- uncomment this if you want some things printed to the hammerspoon console
+-- v:start()
+
 
 function reloadConfig(files)
     doReload = false

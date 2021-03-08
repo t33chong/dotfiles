@@ -121,6 +121,9 @@ noremap <Leader>K K
 nnoremap G Gzb
 vnoremap G Gzb
 
+nnoremap <C-f> <C-f>Lzb``
+vnoremap <C-f> <C-f>Lzb``
+
 " Autocomplete text
 inoremap <S-TAB> <C-n>
 inoremap <C-S-TAB> <C-p>
@@ -156,8 +159,8 @@ autocmd BufReadPost *
 autocmd FileType git,gitcommit set textwidth=72 colorcolumn=72
 
 autocmd FileType py set ft=python
+autocmd FileType python let g:python_highlight_all=1
 autocmd FileType python set syntax=python
-autocmd FileType python let python_highlight_all=1
 autocmd FileType python inoremap # X<C-h>#
 autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4
 autocmd FileType python inoremap <M-;> <ESC>A:<CR>
@@ -174,9 +177,11 @@ autocmd FileType ruby set foldexpr=RubyMethodFold(v:lnum)
 autocmd FileType ruby set foldmethod=expr
 
 autocmd BufRead,BufNewFile *.txt,*.md set linebreak
+autocmd BufRead,BufNewFile *.ex,*.exs set ft=elixir
 autocmd BufRead,BufNewFile *.sbt set ft=scala
 autocmd BufRead,BufNewFile *.jbuilder set ft=ruby
 autocmd BufRead,BufNewFile *.zsh-theme set ft=zsh
+autocmd BufRead,BufNewFile *.jsonl set ft=json
 
 autocmd FileType qf call AdjustWindowHeight(1, 20)
 function! AdjustWindowHeight(minheight, maxheight)
@@ -217,13 +222,14 @@ Bundle 'gmarik/vundle'
 
 " Show git diff in gutter
 Bundle 'airblade/vim-gitgutter'
-let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
 
 " Toggle code blocks between single- and multi-line: gJ gS
 Bundle 'AndrewRadev/splitjoin.vim'
 
 " Jump between matching symbols and words: %
 Bundle 'andymass/vim-matchup'
+let g:matchup_matchparen_status_offscreen = 0
 
 " Navigate inside camel or snake case terms: <Leader>w/b/e/ge
 Bundle 'bkad/CamelCaseMotion'
@@ -263,13 +269,13 @@ let g:ackpreview = 1
 " Label buffer tabs
 Bundle 'mkitt/tabline.vim'
 
-" Highlight indentation levels
-Bundle 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
+" " Highlight indentation levels
+" Bundle 'nathanaelkane/vim-indent-guides'
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_auto_colors = 0
+" let g:indent_guides_guide_size = 1
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
 
 " Automatically close quotes/parens
 " <Tab> = delimitmate#shouldjump /
@@ -357,6 +363,9 @@ vnoremap <Leader>gy :Gbrowse!<CR>
 " Repeat surround.vim & unimpaired.vim with .
 Bundle 'tpope/vim-repeat'
 
+" Enable Gbrowse
+Bundle 'tpope/vim-rhubarb'
+
 " Add/delete/change pairs of parens/quotes/tags: ysiw) ds" cst<p>
 Bundle 'tpope/vim-surround'
 
@@ -367,7 +376,7 @@ Bundle 'tpope/vim-unimpaired'
 " Required for gmc script
 " Jump between markers: [x ]x
 " Resolve conflict with themselves/ourselves/none/both: ct co cn cb
-Bundle 'tristaneuan/conflict-marker.vim'
+Bundle 't33chong/conflict-marker.vim'
 function! NextMergeConflict()
   try
     execute "ConflictMarkerNextHunk"
@@ -392,7 +401,17 @@ endfunction
 " List location & quickfix: <Leader>l <Leader>q
 Bundle 'Valloric/ListToggle'
 
+" Highlight indentation levels
+Bundle 'Yggdroot/indentLine'
+let g:indentLine_color_term = 235
+let g:indentLine_char_list = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+" let g:indentLine_first_char = '0'
+" let g:indentLine_showFirstIndentLevel = 1
+
 " LANGUAGE-SPECIFIC
+
+" Elixir syntax highlighting
+Bundle 'elixir-editors/vim-elixir'
 
 " Go syntax highlighting
 Bundle 'fatih/vim-go'
@@ -404,12 +423,23 @@ Bundle 'jelera/vim-javascript-syntax'
 Bundle 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
-" Python syntax highlighting
-Bundle 'vim-python/python-syntax'
-
 " Automatically expand: {{ {{# {{if {{ife
 Bundle 'mustache/vim-mustache-handlebars'
 let g:mustache_abbreviations = 1
+
+" Color code brackets
+Bundle 'luochen1990/rainbow'
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\   'ctermfgs': [
+\     'cyan',
+\     'magenta',
+\     'green',
+\     'blue',
+\     'yellow',
+\     'red',
+\   ]
+\ }
 
 " DISABLED
 

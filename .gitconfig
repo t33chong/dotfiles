@@ -8,10 +8,15 @@
 [push]
   default = current
 [github]
-  user = tristaneuan
+  user = t33chong
 [init]
   templatedir = ~/.git-templates
 [credential]
   helper = store
 [url "git@github.com:"]
   insteadOf = https://github.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

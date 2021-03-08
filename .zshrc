@@ -3,7 +3,7 @@ export TERM=xterm-256color
 export CLICOLOR_FORCE=1
 
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.bin:/Users/tristan/Library/Python/3.7/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/tristan/.oh-my-zsh
@@ -120,6 +120,11 @@ ua() {
 # https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 # Install: $ git clone --bare git@github.com:tristaneuan/dotfiles.git $HOME/.dotfiles
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+# ua dot
+# dot() {
+#   # zsh -c "source $HOME/.zshrc && $1 --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ${@:2}"
+#   $1 --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ${@:2}
+# }
 alias sz="source $HOME/.zshrc"
 
 alias d="docker"
@@ -143,14 +148,14 @@ ua ga
 ga() { git add $@; git status -sb }
 ua gap
 gap() { git add -p $@; git status -sb }
-alias gaa="git add -A git status -sb"
+alias gaa="git add -A; git status -sb"
 alias gau="git add -u; git status -sb"
 ua grm
 grm() { git rm $@; git status -sb }
 ua gmv
 gmv() { git mv $@; git status -sb }
 ua gcl
-gcl() { local repo="$@"; git clone $repo && cd $(echo -n "$repo" | cut -d'/' -f2) }
+gcl() { local repo="$@"; git clone $repo && cd $(echo -n ${repo%".git"} | cut -d'/' -f2) }
 ua gcb
 gcb() { git checkout -b $@; git status -sb }
 ua gck
@@ -209,6 +214,18 @@ gsw() { # git diff between current and n versions ago
   local commit=$(git log -n 1 --skip=$offset --pretty=format:%h -- $1)
   vim -c "Gvdiff $commit" $1
 }
+ua gz
+gz() {
+  local repo_name="$(basename $PWD)"
+  rm $repo_name-*.zip
+  local release_version="$repo_name-$(git rev-parse --short HEAD)"
+  git archive --format=zip -o "$release_version.zip" HEAD
+  echo -n $release_version | pbcopy
+}
+ua mkg
+mkg() { mkdir $1 && cd $1 && git init }
+ua mnt
+mnt() { hdiutil attach $1 -stdinpass }
 
 alias l="ls -lh"
 alias la="ls -lAh"
@@ -219,7 +236,7 @@ alias py="python3"
 alias py2="python2"
 alias py3="python3"
 alias pir="pip3 install -r requirements.txt"
-alias mkvenv="python3 -m venv env"
+alias mkvenv="python3 -m venv env && . env/bin/activate"
 alias venv=". env/bin/activate"
 
 alias ir="irb --simple-prompt"
@@ -276,3 +293,6 @@ bindkey -r '\ec' # Unbind fzf-cd-widget
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 eval `ssh-agent` > /dev/null && ssh-add -A 2> /dev/null
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
