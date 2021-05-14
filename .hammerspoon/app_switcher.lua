@@ -3,12 +3,16 @@
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 
 local windows = {
-	H = "Authy Desktop",
-	J = "Firefox Developer Edition",
-	K = "iTerm2",
-	L = "Spotify",
-	[";"] = "Discord",
-	["'"] = "Slack",
+	["0"] = "Finder",
+	["1"] = "iTerm2",
+	["2"] = "Firefox Developer Edition",
+	["3"] = "Slack",
+	["4"] = "Discord",
+	["5"] = "Authy Desktop",
+	["6"] = "Preview",
+	["7"] = "Things",
+	["8"] = "Calendar",
+	["9"] = "Spotify",
 }
 
 -- if the app has to be launched by a different name
