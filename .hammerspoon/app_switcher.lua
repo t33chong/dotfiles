@@ -4,8 +4,8 @@ local hyper = {"cmd", "alt", "ctrl", "shift"}
 
 local windows = {
 	["0"] = "Finder",
-	["1"] = "iTerm2",
-	["2"] = "Firefox Developer Edition",
+	["1"] = "Firefox Developer Edition",
+	["2"] = "iTerm2",
 	["3"] = "Slack",
 	["4"] = "Discord",
 	["5"] = "Authy Desktop",
