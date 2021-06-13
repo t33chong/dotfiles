@@ -25,7 +25,7 @@ local lastKey = ''
 local lastKeyTime = 0
 local lastWindowIndex = 1
 local appWindows = nil
-local doubleKeyThreshold = .8
+local doubleKeyThreshold = 1.5
 
 -- set up the binding for each key combo
 for key, appName in pairs(windows) do
