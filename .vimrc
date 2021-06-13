@@ -176,6 +176,8 @@ autocmd FileType ruby set syntax=ruby
 autocmd FileType ruby set foldexpr=RubyMethodFold(v:lnum)
 autocmd FileType ruby set foldmethod=expr
 
+autocmd FileType tf set indentexpr=
+
 autocmd BufRead,BufNewFile *.txt,*.md set linebreak
 autocmd BufRead,BufNewFile *.ex,*.exs set ft=elixir
 autocmd BufRead,BufNewFile *.sbt set ft=scala
